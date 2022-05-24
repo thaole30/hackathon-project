@@ -1,0 +1,14 @@
+@import "../../../style/style.scss";
+
+.looking-more {
+    margin: 120px 0 60px;
+    .looking-card {
+        height: 100%;
+        p {
+            @include textStyle($rubik, normal, 20px, rgba(8, 10, 37, 0.6), 400, null, null);
+            flex-grow: 1;
+        }
+
+  
+    }
+}

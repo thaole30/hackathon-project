@@ -1,0 +1,59 @@
+@import "../../../style/style.scss";
+
+
+.portfolio-body {
+
+    .personal-info {
+        background-color: $white-color;
+        padding: 24px 0 64px;
+
+        a.edit-profile-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 10;
+            button {
+                border: 1px solid #000;
+                color: #000;
+                border-radius: 5px;
+                background-color: $white-color;
+                padding: 6px 15px;
+
+                svg {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+
+        .avatar-container {
+            margin-top: -100px;
+            margin-bottom: 40px;
+            width: 200px;
+            .avatar {
+                width: 200px;
+                height: 200px;
+                border: 5px solid $orange-main;
+            }
+
+            .avatar-badge {
+                position: absolute;
+                bottom: -12px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #000;
+                border: 1px solid $orange-main;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                font-size: 16.67px;
+            }
+        }
+    }
+
+
+    .portfolio-main {
+        
+    }
+
+}

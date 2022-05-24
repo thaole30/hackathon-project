@@ -1,0 +1,38 @@
+@import "../../../../style/style.scss";
+
+
+.portfolio-main {
+    .portfolio-tab-wrapper {
+        background-color: $secondary-surface;
+        height: 100px;
+
+        .portfolio-tab {
+            .ant-tabs-ink-bar {
+                height: 5px;
+                background: $orange-main !important;
+              }
+            .ant-tabs-tab {
+                padding: 16px 0;
+                &::after {
+                    content: "";
+                    position: absolute;
+                    right: -14px;
+                    width: 1px;
+                    height: 30px;
+                    background-color: #747474;
+                }
+
+                &.ant-tabs-tab-active .ant-tabs-tab-btn {
+                    // border-bottom: 2px solid #BF2D30 !important;
+                    // z-index: 2;
+                    h1, h2 {
+                        color: $orange-main;
+                    }
+                }
+            }
+        }
+    }
+
+
+}
+

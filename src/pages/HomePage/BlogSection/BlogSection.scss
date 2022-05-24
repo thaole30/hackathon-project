@@ -1,0 +1,46 @@
+@import "../../../style/style.scss";
+
+.blog-section {
+    width: 100%;
+    height: auto;
+    min-height: 70vh;
+    padding: 140px 0;
+    background-color: $white-color;
+
+
+    .looking-for-hackathon {
+
+        height: 238px;
+        background: linear-gradient(90deg,#c58aff,#00adfb 50.61%,#00d5c9 74.48%,#00de8c);
+        box-shadow: 0 12px 24px rgba(32, 124, 254, 0.2);
+        border-radius: 30px;
+        padding: 65px 64px;
+
+        h3 {
+            @include textStyle($poppins, normal, 36px, $white-color, 600, null, null);
+        }
+        button.looking-for-hackathon-btn{
+            background: #fff;
+            box-shadow: 0 22px 44px rgba(8, 10, 37, 0.2);
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 100%;
+            color: $text-dark !important;
+            width: 214px;
+            min-height: 64px;
+        }
+
+        @include mobile {
+            height: auto;
+            flex-direction: column;
+            padding: 35px 34px;
+            text-align: center;
+            margin-top: 80px;
+
+            h3 {
+                font-size: 22px;
+                margin-bottom: 20px !important;
+            }
+        }
+    }
+}

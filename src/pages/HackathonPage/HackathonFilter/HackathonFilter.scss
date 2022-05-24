@@ -1,0 +1,176 @@
+@import "../../../style/style.scss";
+
+.hackathon-filter {
+    .hackathon-search {
+        max-width: 1002px;
+        width: 100%;
+        height: 80px;
+        margin: -41px auto 0;
+        padding: 0 32px;
+        position: relative;
+        z-index: 10;
+        background-color: $white-color;
+        box-shadow: 0 7px 45px rgba(92, 110, 146, 0.1);
+        border-radius: 12px;
+        .search-input-container {
+            flex: 1;
+            input {
+                height: 82px;
+                margin-left: 12px;
+                outline: none;
+                border: none;
+                width: 100%;
+                background-color: transparent;
+                @include textStyle($rubik, normal, 16px, rgba(8,10,37,.7), 400, 100%, null);
+            }
+        }
+        .filter-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(8,10,37,.1);
+            border-radius: 4px;
+            padding: 0;
+            background-color: $white-color;
+        }
+    }
+
+    .hackathon-tags {
+        .popular-tags {
+            position: relative;
+            max-width: 634px;
+            margin: 32px auto;
+            .tags-title {
+                margin-right: 22px !important;
+            }
+            .tag-item {
+                color: rgba(8,10,37,.7);
+                border: none;
+                height: 31px;
+                background: rgba(8,10,37,.05);
+                line-height: 31px;
+                border-radius: 40px 0 0 40px;
+                cursor: pointer;
+
+                &.selected {
+                    background: rgba(8,10,37,.5);
+                    color: #fff;
+                }
+            }
+
+            @include mobile {
+                overflow: auto !important;
+                justify-content: flex-start;
+            }
+        }
+
+        .status-tabs {
+            background: #f7f7f7;
+            border-radius: 20px;
+            height: 120px;
+            padding: 0 32px;
+            margin-bottom: 56px;
+            flex-wrap: wrap;
+
+            @include mobile {
+                height: auto !important;
+                padding: 15px;
+            }
+
+            .status-left-tabs {
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+
+            .status-btn-group {
+                flex: 1;
+                button {
+                    background: $white-color;
+                    cursor: pointer;
+                    width: 48px;
+                    height: 40px;
+                    outline: none;
+                    border: none;
+                    border: 1px solid rgba(8,10,37,.1);
+                    box-sizing: border-box;
+                    transition: all .3s;
+
+                    &.active, &:hover {
+                        background: linear-gradient(94.91deg,rgba(255,153,0,.15) .75%,rgba(245,127,32,.15) 88.93%);
+                        border-color: $orange-main;
+                    }
+                }
+            }
+        }
+
+        .hackathons-list {
+            a.hackathon-item {
+                .hackathon-card {
+    
+                    background: $white-color;
+                    box-shadow: 0 0 1px 1px rgba(8, 10,37, 0.05);
+                    border-radius: 16px;
+                    img.card-img {
+                        background: #f6f6f6;
+                        border-radius: 16px 16px 0 0;
+                        width: 100%;
+                        object-fit: cover;
+                        height: 206px;
+                        outline: none;
+                    }
+                    .hackathon-card-content {
+                        padding: 20px 24px;
+    
+                        .hackathon-card-icon {
+                            width: 32px;
+                            height: 32px;
+                            background: #fff;
+                            box-shadow: 0 12px 25px rgba(8, 10, 37,0.08);
+                            border-radius: 50%;
+                        }
+    
+                        .hackathon-timezone {
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            width: fit-content;
+                            height: 23px;
+                            padding: 0 8px;
+                            margin-left: 4px;
+                            background: rgba(252,195,0,.15);
+                            border-radius: 40px;
+                            font-family: $rubik;
+                            font-weight: 500;
+                            font-size: 10px;
+                            line-height: 23px;
+                            color: #080a25;
+                            display: inline-block;
+                        }
+    
+                        span.address {
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            display: block;
+                            max-width: 130px;
+                        }
+    
+                        .tags-list {
+                            .tag-item {
+                                font-size: 10px;
+                                line-height: 23px;
+                                padding: 0 12px;
+                                border-radius: 999px!important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    
+}
+    .length-filter {
+        margin-top: 42px;
+        border-top: 1px solid #e1e1e1;
+    }

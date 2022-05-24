@@ -1,0 +1,17 @@
+@import "../../../style/style.scss";
+
+.rebaked-section {
+    width: 100%;
+    height: auto;
+    padding-bottom: 140px;
+    background-color: $white-color;
+
+    .absolute-img {
+        position: absolute;
+        left: -200px;
+        top: -70px;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+}

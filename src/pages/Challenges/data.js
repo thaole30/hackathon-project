@@ -1,0 +1,36 @@
+
+export const users = [
+    {   
+        id: 1,
+        name: "David",
+        img: "https://cdn2.vectorstock.com/i/1000x1000/36/36/cute-boy-waving-hand-on-transparent-background-vector-15093636.jpg",
+        job: "Product manager",
+        workingStyle: "Working solo",
+        projectsQuantity: "1",
+        followersQuantity: "3",
+        skills: ["javascript", "java", "ruby"],
+        interests: ["blockchain", "health", "gaming"],
+    },
+    {   
+        id: 2,
+        name: "Maria",
+        img: "https://i.pinimg.com/474x/23/78/f6/2378f67526a86105511fa24efd84239e.jpg",
+        job: "Full-stack developer",
+        workingStyle: "Looking for teammates",
+        projectsQuantity: "2",
+        followersQuantity: "5",
+        skills: ["nodejs", "typescript", "react", "python","blockchain"],
+        interests: ["Education", "Social Good", "ruby", "web","devOps", "AR/VR", "Quantum", "LifeHacks", "Music/Art"],
+    },
+    {   
+        id: 3,
+        name: "John",
+        img: "https://thumbs.dreamstime.com/b/cartoon-schoolboy-green-anime-eyes-isolated-transparent-background-cute-little-blonde-big-wearing-uniform-backpack-vector-123656245.jpg",
+        job: "business analytist",
+        workingStyle: "Has a team",
+        projectsQuantity: "2",
+        followersQuantity: "6",
+        skills: ["swift", "java", "angular", "matlab","ruby", "go"],
+        interests: ["blockchain", "business", "mobile", "IoT", "MeMe", "Productivity", "Health"],
+    },
+]

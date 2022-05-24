@@ -1,0 +1,37 @@
+@import "../../style/style.scss";
+
+
+  button.tab-btn {
+    font-family: $rubik;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    height: 56px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 0 22px 0 8px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    color: #131720;
+    transition: all .2s;
+
+    span {
+        width: 40px;
+        height: 40px;
+        background: #f3f3f5;
+        border-radius: 12px;
+        margin-right: 8px;
+    }
+    &.active-tab {
+        background: linear-gradient(90deg,#c58aff,#00adfb 50.61%,#00d5c9 74.48%,#00de8c),linear-gradient(96.1deg,#f9ec80 -46.81%,#f9ea7c -38.1%,#fae66e -27.85%,#fbde54 -16.82%,#fdd42c -5.32%,#ffce07 .69%,#f57f20 68.1%);
+        box-shadow: 0 20px 32px rgba(97, 156, 253, 0.25);
+        color: #fff;
+        font-weight: 500;
+    }
+
+    &:hover {
+        filter: brightness(70%);
+    }
+}

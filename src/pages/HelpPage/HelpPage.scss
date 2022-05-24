@@ -1,0 +1,101 @@
+@import "../../style/style.scss";
+
+.help-page {
+    overflow: hidden;
+    .help-banner {
+        width: 100%;
+        height: 230px;
+        position: relative;
+        background: #000235 url("https://crowdhack.io/static/media/space-background.277198e1.png") 50%;
+        background-size: cover;
+
+        .search-section {
+            background-color: $white-color;
+            height:50px;
+            border-radius: 12px;
+            position: relative;
+            z-index: 100;
+            .search-icon {
+                margin-left: 8px;
+                padding: 8px;
+                border: none;
+                border-right: none;
+                border-bottom-left-radius: 2px;
+                border-top-left-radius: 2px !important;
+                background: #fff;
+            }
+
+            .select-article {
+                & > *, & {
+                    border: none !important;
+                    outline: none !important;
+                    box-shadow: none !important;
+                }
+                .search-article-result {
+                    padding: 10px 20px;
+                }
+            }
+    
+        }
+
+        .decor-imgs {
+            position: absolute;
+            & > img {
+                position: absolute;
+                user-select: none;
+                pointer-events: none;
+            }
+            .img-start-1 {
+                left: 0;
+                bottom: 37px;
+            }
+            .img-moon {
+                left: 47.5px;
+                bottom: 38px;
+            }
+            .img-galaxy-1 {
+                left: calc(50% - 75px);
+                top: 50%;
+                transform: translate(-50%,-50%);
+            }
+            .img-start-2 {
+                left: calc(50% + 210px);
+                top: 8px;
+                transform: translateX(-50%);
+            }
+            .img-start-3 {
+                right: 10px;
+                bottom: 77.96px;
+            }
+            .img-galaxy-2 {
+                right: -8vw;
+                top: 33px;
+            }
+        }
+    }
+
+    .help-body {
+        min-height: calc(100vh - 860px);
+        margin-top: 56px;
+        position: relative;
+        .help-tags {
+            .help-tag {
+                width: 100%;
+                padding: 20px 30px;
+                border: 1px solid $primary-color;
+                cursor: pointer;
+                border-radius: 4px;
+                font-size: 18px;
+                font-weight: 500;
+                color: $primary-color;
+                text-align: center;
+                transition: .3s;
+
+                &:hover {
+                    background: $primary-color;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

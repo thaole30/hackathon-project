@@ -1,0 +1,45 @@
+@import "../../style/style.scss";
+
+.payment-page {
+    background-color: #f6f6f6;
+    .history-wrapper {
+        background-color: $white-color;
+        padding: 32px 0px;
+    }
+
+    .payment-content {
+        min-height: 100vh;
+        margin-top: 56px;
+        .tab-container {
+            
+            .ant-tabs-nav {      
+                height: 72px;
+                margin-bottom: 40px;
+                max-width: 450px;
+                background-color: $secondary-surface;
+                border-radius: $border-radius-base;
+            }
+            .ant-tabs-nav-list {
+                width: 100%;
+                .ant-tabs-tab {
+                    flex-grow: 1;
+                    text-align: center;
+                    padding: 20px 0;
+                    margin: 0;
+                    .ant-tabs-tab-btn {
+                        width: 100%;
+                    }
+                    &:nth-child(2) {
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            width: 2px;
+                            height: 40px;
+                            background-color: rgb(116, 116, 116);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+@import "../../style/style.scss";
+
+.footer {
+    padding: 0;
+    color: rgba(46,46,46,.7);
+    font-size: 14px;
+    background: #080a25;
+    .footer-container {
+        padding-top: 64px;
+        padding-bottom: 40px;
+
+        .footer-link {
+            margin-bottom: 22px;
+        }
+
+        .footer-headline {
+            @include textStyle($inter, normal, 24px, $white-color, 600, null, null);
+            &:hover {
+                color: #29b8ff !important;
+            }
+        } 
+
+        .email-input-group {
+            input, input:focus {
+                height: 60px;
+                background: transparent;
+                font-size: 16px;
+                letter-spacing: -.025em;
+                color: #a29d9d;
+                border-color: $white-color;
+            }
+            .ant-input-group-addon:last-child {
+                width: 80px;
+                background: transparent;
+                .anticon { 
+                    color: white;
+                    font-size: 30px;
+                    font-weight: 300;
+                }
+            }
+        }
+    }
+}

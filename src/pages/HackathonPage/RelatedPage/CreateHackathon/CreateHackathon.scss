@@ -1,0 +1,30 @@
+@import "../../../../style/style.scss";
+
+.create-hackathon-page {
+    margin-bottom: 80px;
+
+    .hackathon-tab {
+        height: 96px;
+        background-color: white;
+    }
+
+    .create-basic-info-hkt {
+        margin-top: 80px;
+        max-width: 714px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 64px;
+        background-color: $white-color;
+
+        button {
+            padding: 10px 20px;
+            border-radius: 999px;
+            height:46px;
+        }
+
+        .datepicker-hkt {
+            min-width: 330px;
+            padding: 10px 20px;
+        }
+    }
+}

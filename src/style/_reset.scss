@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+    margin: 0;
+    color: rgba(46,46,46,.7);
+    font-size: 14px;
+    font-family: "Inter",sans-serif;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    background-color: $white-color !important;
+    font-feature-settings: "tnum","tnum";
+}
+
+// html { scroll-behavior: smooth; } 
+
+a {
+  text-decoration: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+a:hover {
+  color: #29b8ff !important;
+}
+
+ul {
+  list-style: none;
+}
+
+h1 {
+  margin-bottom: 32px;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+}

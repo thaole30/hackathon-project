@@ -1,0 +1,78 @@
+@import "../../style/style.scss";
+
+button.custom-button {
+    color: $white-color !important;
+    border: none!important;
+    border-radius: 12px;
+    font-family: $rubik;
+    cursor: pointer;
+
+    &.primary {
+        background: linear-gradient(94.91deg,#f90 .75%,#f57f20 88.93%);
+        box-shadow: 0 20px 32px rgba(255, 147, 61, 0.2);
+        color: #fff;
+
+        &:hover {
+            opacity: .7;
+            outline: none;
+        }
+    }  
+    
+    &.secondary {
+        background: #f9f9f9;
+        border: 0.5px solid rgba(8,10,37,.2)!important;
+        color: #1d263a !important;
+
+        &:hover {
+            opacity: .7;
+            outline: none;
+        }
+    }
+
+    &.outlined {
+        background: #fff;
+        border: 2px solid #f90!important;
+        color: $text-dark !important;
+    }
+
+    &.orange {
+        background: $orange-main;
+        color: $text-dark;
+        border-color: transparent;
+        box-shadow: none;
+        border-radius: 4px;
+    }
+
+    &.large {
+        height: 72px;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 100%;
+        padding-left: 31px;
+        padding-right: 31px;
+    }
+    &.middle {
+        height: 52px;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 100%;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    &.small {
+        height: 30px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    &.no-border {
+        border: none !important;
+    }
+
+    &.no-shadow {
+        box-shadow: none !important;
+    }
+}
+

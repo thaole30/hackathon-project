@@ -1,0 +1,12 @@
+@import "../../style/style.scss";
+
+.home-page-container {
+   .crowdhack-info {
+        width: 100%;
+        min-height: calc(100vh - 90px);
+        z-index: 3;
+        background-image: url("https://crowdhack.io/images/landing_v2/background.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+   } 
+}

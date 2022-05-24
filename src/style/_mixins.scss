@@ -1,0 +1,108 @@
+
+@mixin marginX($number) {
+  margin: 0 $number;
+}
+
+@mixin marginY($number) {
+  margin: $number 0;
+}
+
+@mixin marginA($number) {
+  margin: $number;
+}
+
+
+@mixin textStyle($font-family, $font-style,$fontsize, $textColor, $font-weight: null, $line-height: null, $transform: null) {
+  font-family: $font-family;
+  font-style: $font-style;
+  font-size: $fontsize;
+  color: $textColor !important;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  text-transform: $transform;
+}
+
+@mixin styleButton($bgColor, $borderColor, $pd-y, $pd-x, $radius) {
+  background: $bgColor;
+  @if($borderColor == none) {
+    border: none;
+  } @else {
+    border: 2px solid $borderColor;
+  }
+  padding: $pd-y $pd-x;
+  border-radius: $radius;
+}
+
+@mixin btnHover($bgColor, $borderColor, $txtColor) {
+  background: $bgColor;
+  border-color: $borderColor;
+  color: $txtColor;
+  transition: all 0.3s;
+}
+
+
+@mixin position($prop, $top: null, $left: null, $right: null, $bottom: null) {
+  position: $prop;
+  top: $top;
+  left: $left;
+  bottom: $bottom;
+  right: $right;
+}
+
+
+@mixin mobile {
+    @media (max-width: #{$mobile-width - 1px}) {
+      @content;
+    }
+  }
+  
+  @mixin tablet {
+    @media (max-width: #{$tablet-width}) {
+      @content;
+    }
+  }
+  
+  @mixin desktop {
+    @media (max-width: #{$desktop-width}) {
+      @content;
+    }
+  }
+  
+  @mixin biggerdesktop {
+    @media (max-width: #{$bigger-desktop-width}) {
+      @content;
+    }
+  }
+  
+  @mixin custom_container($width) {
+      @if ($width == $bigger-desktop-width) {
+        //desktop
+        width: 95%;
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      @else if ($width == $desktop-width) {
+        //desktop
+        width: 95%;
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-left: auto;
+        margin-right: auto;
+      } @else if ($width == $tablet-width) {
+        //tablet 
+        width: 90%;
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-left: auto;
+        margin-right: auto;
+      } @else {
+        //mobile
+        width: 100%;
+        padding-right: 16px;
+        padding-left: 16px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+  }

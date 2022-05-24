@@ -1,0 +1,55 @@
+@import "../../style/style.scss";
+
+.project-detail {
+    .project-detail-banner {
+        width: 100%;
+        min-height: 230px;
+        position: relative;
+        background: #000235 url("https://crowdhack.io/static/media/space-background.277198e1.png") 50%;
+        background-size: cover;
+        padding: 24px 0;
+        
+        h1.project-detail-banner-title, h3 { 
+            font-family: $SGT !important;
+            color: $white-color !important;
+        }
+    }
+    button.project-detail-banner-btn {
+        min-width: 152px;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        border: none !important;
+        &.like-btn{
+            background-color: $success-color;
+            color: $white-color;
+        }
+        &.comment-btn{
+            background-color: $link-color;
+            color: $white-color;
+        }
+    }
+
+    .project-detail-comments-section {
+        button.edit-comment-btn {
+            background-color: transparent !important;
+            border: none !important;
+        }
+    }
+    .switch-btn {
+        .check-icon {
+
+        }
+        .close-icon {
+            display: none;
+        }
+        &:hover {
+            .check-icon {
+                display: none;
+            }
+            .close-icon {
+                display: block;
+            }
+        }
+    }
+}

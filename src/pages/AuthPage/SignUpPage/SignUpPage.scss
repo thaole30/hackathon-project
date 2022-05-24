@@ -1,0 +1,32 @@
+@import "../../../style/style.scss";
+
+.sign-up-page {
+    min-height: 70vh;
+    padding-top: 78px;
+    padding-bottom: 24px;
+    width: 100%;
+    background-color: #f6f6f6;
+
+    .sign-up-form {
+        .ant-checkbox-inner,.ant-checkbox, .ant-checkbox:hover,.ant-checkbox-checked, .ant-checkbox-checked:hover {
+            border-color: $orange-main !important;
+        }
+        .ant-checkbox-checked .ant-checkbox-inner {
+                background-color: $orange-main !important;
+        }
+    }
+    button.auth-github {
+        width: 100%;
+        background: #f9f9f9!important;
+        color: $text-dark !important;
+        border: 1px solid rgba(8,10,37,.2)!important;
+        border: 1px solid rgba(46,46,46,.2);
+        box-shadow: none !important;
+        
+        svg {
+            display: block;
+            width: 20px;
+            height: 100%;
+        }
+    }
+}

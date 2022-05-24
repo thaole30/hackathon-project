@@ -1,0 +1,50 @@
+@import "../../../style/style.scss";
+
+.avatar-dropdown {
+    min-width: 300px;
+    background-color: $white-color;
+
+    .dropdown-top-info {
+        background-color: #f6f6f6;
+        padding: 18px 32px 12px;
+        button.connect-wallet-btn {
+            font-size: 16px;
+            font-weight: 400;
+            background: #3f8ef7;
+            color: $text-light;
+            border-color: transparent;
+            box-shadow: none;
+        }
+    }
+
+    .progress-wrapper {
+        margin: 0 32px;
+        padding: 24px 0;
+        border-bottom: 1px dashed #cdcece;
+    }
+
+    .menu-items-list {
+        margin: 0 32px;
+        padding: 24px 0;
+        border: none;
+        border-bottom: 1px dashed #cdcece;
+        
+        li {
+            padding: 10px 0px;
+            a {
+                @include textStyle($rubik, normal, 20px, rgba(46,46,46,.7), 400, null, null);
+                &:hover {
+                    color: #3f8ef7 !important;
+                }
+            }
+        }
+    }
+    .log-out-wrapper {
+        margin: 0 32px;
+        padding: 24px 0;
+        h3 {
+            color: $error-color;
+        }
+    }
+
+}

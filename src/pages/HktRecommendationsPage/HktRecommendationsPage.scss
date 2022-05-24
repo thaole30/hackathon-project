@@ -1,0 +1,17 @@
+@import "../../style/style.scss";
+
+
+.hkt-recommendations-page {
+    background-color: #f6f6f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 56px;
+    padding-bottom: 56px;
+    .preferences {
+        max-width: 800px;
+        padding: 32px;
+        background-color: $white-color;
+    }
+}

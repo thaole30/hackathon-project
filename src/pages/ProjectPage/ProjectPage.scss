@@ -1,0 +1,44 @@
+@import "../../style/style.scss";
+
+.project-page {
+    background-color: $white-color;
+    .project-banner {
+        background: $text-dark;
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 450px;
+        overflow: hidden;
+        
+        .project-banner-content {
+            height: 450px;
+            position: relative;
+            img.img-banner {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+
+                &.left {
+                    left: -300px;
+                }
+
+                
+                &.right {
+                    right: -300px;
+                }
+            }
+            h1 {
+                @include textStyle($poppins, normal, 48px, hsla(0,0%,100%,.6), 400, null, null);
+                b {
+                    font-weight: 900;
+                    color: $white-color;
+                }
+            }
+
+            @include mobile {
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 64px;
+            }
+        }
+    }
+}

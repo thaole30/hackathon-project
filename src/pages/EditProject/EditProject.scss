@@ -1,0 +1,37 @@
+@import "../../style/style.scss";
+
+.edit-project {
+    .edit-project-content {
+        background-color: $white-color;
+        padding: 32px;
+        border-radius: 4px;
+
+        .url-space {
+            gap: 24px !important;
+            .ant-space-item:nth-child(1) {
+                flex-grow: 1;
+            }
+        }
+
+        .thumbnail-card {
+            background-color: $white-color;
+            box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+
+            .thumbnail-body {
+                padding: 18px;
+                min-height: 150px;
+            }
+        }
+        .choose-thumbnail-section {
+            button.choose-photo-btn {
+                width: auto;
+                padding: 8px;
+                height: 40px;
+                background: $primary-color;
+                color: $white-color;
+                box-shadow: none;
+                border-radius: 4px;
+            }
+        }
+    }
+}

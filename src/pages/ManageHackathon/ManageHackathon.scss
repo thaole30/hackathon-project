@@ -1,0 +1,319 @@
+@import "../../style/style.scss";
+
+
+.manage-hackathon-page {
+    .manage-hackathon-banner {
+        width: 100%;
+        height: 230px;
+        position: relative;
+        background-image: url("https://crowdhack.io/static/media/bitcoin-banner.d314b6a6.png");
+        background-size: cover;
+        background-position: bottom;
+        background-repeat: no-repeat;
+
+        .left-banner-content {
+            .hkt-type-tag {
+                height: 28px;
+                background: #f31d1d;
+                padding: 6px 14px;
+                border-radius: 4px 0 4px 4px;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 22px;
+                color: #fff;
+                border: none;
+            }
+        }
+    
+        .right-banner-content {
+            .private-link-section {
+                position: absolute;
+                z-index: 2;
+                bottom: 0;
+                right: 0;
+                border-radius: 4px;
+                padding: 20px 20px 15px;
+                background-color: rgba(0,0,0,.6);
+                max-width: 450px;
+            }
+            .note-section {
+                position: absolute;
+                right: 0;
+                bottom: 139px;
+                z-index: 2;
+                background-color: rgba(0,0,0,.6);
+                width: 253px;
+                height: 34px;
+                border-radius: 4px 4px 0 0;
+                padding: 4px;
+    
+                .red-dot {
+                    width: 12px !important;
+                    height: 12px !important;
+                    border-radius: 50%;
+                    background: red;
+                }
+            }
+        }
+    }
+
+    .main-tab {
+        .challenges-tab {
+            .ant-tabs-ink-bar {
+                height: 5px;
+                background: $orange-main !important;
+              }
+              .ant-tabs-nav-wrap {
+                overflow: auto!important;
+                .ant-tabs-tab {
+                    padding: 16px 0;
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        right: -14px;
+                        width: 1px;
+                        height: 30px;
+                        background-color: #747474;
+                    }
+    
+                    &.ant-tabs-tab-active .ant-tabs-tab-btn {
+                        // border-bottom: 2px solid #BF2D30 !important;
+                        // z-index: 2;
+                        h1, h2 {
+                            color: $orange-main;
+                        }
+                    }
+                }
+              }
+
+              .ant-tabs-nav-operations {
+                  .ant-tabs-nav-more {
+                      display: none;
+                  }
+              }
+        }
+    }
+    
+    .manage-hackathon-content {
+        .edit-hkt-section {
+            .tox.tox-tinymce {
+                height: 250px !important;
+            }
+
+            .action-select {
+                .ant-select-selector {
+                    background-color: #f6f6f6!important;
+                    color: #2e2e2e !important;
+                }
+            }
+
+            .edit-hkt-tab {
+                .ant-tabs-ink-bar {
+                    height: 5px;
+                    background: $orange-main !important;
+                  }
+                  .ant-tabs-nav-wrap {
+                    overflow: auto!important;
+                    justify-content: flex-start;
+                    .ant-tabs-tab {
+                        padding: 16px 0;
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            right: -14px;
+                            width: 1px;
+                            height: 30px;
+                            background-color: #747474;
+                        }
+        
+                        &.ant-tabs-tab-active .ant-tabs-tab-btn {
+                            // border-bottom: 2px solid #BF2D30 !important;
+                            // z-index: 2;
+                            h1, h2 {
+                                color: $orange-main;
+                            }
+                        }
+                    }
+                  }
+    
+                  .ant-tabs-nav-operations {
+                      .ant-tabs-nav-more {
+                          display: none;
+                      }
+                  }
+                  .red-dot {
+                      width: 10px !important;
+                      height: 10px !important;
+                      border-radius: 50%;
+                      background: red;
+                      margin-right: 4px;
+                  }
+            }
+
+            button.hkt-edit-form-submit {
+                height: 50px;
+                border-radius: 999px;
+                color: black !important;
+            }
+
+            .edit-hkt-relative-content {
+                position: relative;
+                padding: 48px;
+                max-width: 896px;
+                margin: 64px auto;
+                background-color: $white-color;
+
+                .eligibility {
+                    .ant-radio-wrapper {
+                        color: rgba(46,46,46,.7);
+                        font-style: 15px;
+                    }
+                    .ant-radio-wrapper-checked {
+                        font-weight: 500;
+                        color: #2e2e2e;
+                        font-size: 16px!important;
+                    }
+                }
+
+                .design {
+                    .colors-section {
+                        .color-box {
+                            width: 50px;
+                            height: 26px;
+                            border-radius: 1px;
+                            cursor: pointer;
+                            border: 2px solid #dadada;
+                            
+                            &.active {
+                                border: 2px solid #000;
+                            }
+        
+                            &:hover {
+                                border-color: #b3b3b3;
+                                box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+                            }
+                        }
+                    }
+                    .design-divider {
+                        border: dashed rgba(46,46,46,.3);
+                        border-width: 1px 0 0;
+                    }
+                    .ant-radio-wrapper {
+                        color: rgba(46,46,46,.7);
+                        font-style: 15px;
+                    }
+                    .ant-radio-wrapper-checked {
+                        font-weight: 500;
+                        color: #2e2e2e;
+                        font-size: 16px!important;
+                    }
+                }
+
+                .hackathon-site {
+                    .tox.tox-tinymce {
+                        height: 250px !important;
+                    }
+
+                    .add-section-btn:hover {
+                        opacity: .7;
+                        background: rgba(0,0,0,.018);
+                    }
+              
+                }
+
+                .todos {
+                    .add-section-btn:hover {
+                        opacity: .7;
+                        background: rgba(0,0,0,.018);
+                    }
+                    
+                }
+
+                .starter-kit {
+
+                }
+
+                .public-voting {
+                    .public-voting-select {
+                        .ant-select-arrow {
+                            width: 20px;
+                            height: 20px;
+                            background: #f7f7f7;
+                            border-radius: 2px;
+                            padding-top: 3px;
+                            right: 12px;
+                            top: 13.5px;
+
+                            svg {
+                                width: 20px;
+                                color: blue;
+                            }
+                        }
+                    }
+                }
+
+                .judging {
+                    .judge-form-wrapper, .criteria-form-wrapper {
+                        padding: 32px;
+                        margin-top: 12px;
+                        margin-bottom: 12px;
+                        background-color: #f6f6f6;
+                        border-radius: 4px;
+                    }
+                    .judge-photo {
+                        .upload-hktHeaderlogo {
+                            width: 300px !important;
+                            height: 300px !important;
+
+                            .ant-upload.ant-upload-drag {
+                                height: 300px !important;
+                            }
+                        }
+                        .ant-upload-list-picture-card .ant-upload-list-item {
+                            width: 300px !important;
+                            height: 300px !important;
+                        }
+                    }
+                }
+
+                .prizes {
+                    .prize-form-wrapper {
+                        padding: 32px;
+                        margin-top: 12px;
+                        margin-bottom: 12px;
+                        background-color: #f6f6f6;
+                        border-radius: 4px;
+                        .prize-currency-select {
+                            .ant-select-selection-placeholder {
+                                color: $text-dark !important;
+                            }
+                            .ant-select-arrow {
+                                width: 20px;
+                                height: 20px;
+                                background: #f7f7f7;
+                                border-radius: 2px;
+                                padding-top: 3px;
+                                right: 12px;
+                                top: 13.5px;
+    
+                                svg {
+                                    width: 20px;
+                                    color: blue;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+
+.ant-select-item {
+    .ant-select-item-option-content {
+        color: rgba(46,46,46,.7);
+    }
+}

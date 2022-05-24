@@ -1,0 +1,154 @@
+@import "../../../../../style/style.scss";
+
+
+.respective-content {
+    // background-color: $secondary-surface;
+    margin-top: 56px;
+    margin-bottom: 56px;
+
+    .projects {
+        .my-project-card-link {
+            border-radius: 4px;
+
+            .my-project-card {
+                border-radius: 4px;
+                transition: all 0.5s;
+                &:hover {
+                    box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.06), 0 3px 6px rgba(0, 0, 0,02%), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+                }
+                .my-project-card-info {
+                    background-color: $white-color;
+                    padding: 13px 14px 24px;
+                    border-radius: 8px;
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+                    .start-container {
+                        top: 20px;
+                        right: 0;
+                        button {
+                            background-color: transparent;
+                            border: none;
+                            svg {
+                                color: red;
+                            }
+                        }
+                    }
+                    .progress-container {
+                        top: 70px;
+                        right: 0;
+                        background-color: $white-color;
+                        padding: 5px 16px;
+                        border-top-left-radius: 4px;
+                        border-bottom-left-radius: 4px;
+                        text-transform: uppercase;
+                    }
+                    .project-card-img {
+                        height: 220px;
+                        img {
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                }
+
+                .my-project-card-social {
+                    padding: 15px 12px;
+                    background-color: #f2f2f2;
+                    border-radius: 8px;
+
+                }
+             
+            }
+
+        }
+    }
+
+    .hackathon {
+        a.my-hackathon-card-link {
+            .my-hackathon-card-wrapper {
+                padding: 32px;
+                background-color: $white-color;
+                border-radius: 4px;
+                transition: box-shadow .3s,border-color .3s;
+
+                &:hover {
+                    border-color: #b3b3b3;
+                    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+                }
+                
+                .card-left { 
+                    img {
+                        width: 100px;
+                        height: 100px;
+                        object-fit: cover;
+                    }
+                }
+
+                .card-right {
+
+                }
+            }
+        }
+    }
+
+    .likes {
+        .liked-card-link {
+            border-radius: 4px;
+
+            .liked-card {
+                border-radius: 4px;
+                transition: all 0.5s;
+                overflow: hidden;
+                &:hover {
+                    box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.06), 0 3px 6px rgba(0, 0, 0,02%), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+                }
+                .liked-card-info {
+                    background-color: $white-color;
+                    padding: 13px 14px 24px;
+                    border-radius: 8px;
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+
+                    .liked-card-ribbon {
+                        z-index: 2;
+                        width: 265px;
+                        height: 26px;
+                        background-color: #fcc300;
+                        position: absolute;
+                        text-align: center;
+                        top: -25px;
+                        left: -50px;
+                        transform: rotate(-45deg);
+                    }
+
+                    .ribbon-text {
+                        z-index: 2;
+                        position: absolute;
+                        left: 7px;
+                        top: 20px;
+                        transform: rotate(-45deg);
+                        color: #816900;
+                        font-weight: 700;
+                    }
+                    
+                    .project-card-img {
+                        height: 220px;
+                        img {
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                }
+
+                .liked-card-social {
+                    padding: 15px 12px;
+                    background-color: #f2f2f2;
+                    border-radius: 8px;
+
+                }
+             
+            }
+
+        }
+    }
+}

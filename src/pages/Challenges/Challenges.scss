@@ -1,0 +1,277 @@
+@import "../../style/style.scss";
+
+.challenges-page {
+    .challenge-banner {
+        background-color: $white-color;
+        img {
+            height: 230px;
+            object-fit: cover;
+        }
+    }
+
+    .challenges-tab-section {
+        background-color: $secondary-surface;
+        .challenges-tab {
+            .ant-tabs-ink-bar {
+                height: 5px;
+                background: $orange-main !important;
+              }
+              .ant-tabs-nav-wrap {
+                overflow: auto!important;
+                .ant-tabs-tab {
+                    padding: 16px 0;
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        right: -14px;
+                        width: 1px;
+                        height: 30px;
+                        background-color: #747474;
+                    }
+    
+                    &.ant-tabs-tab-active .ant-tabs-tab-btn {
+                        // border-bottom: 2px solid #BF2D30 !important;
+                        // z-index: 2;
+                        h1, h2 {
+                            color: $orange-main;
+                        }
+                    }
+                }
+              }
+
+              .ant-tabs-nav-operations {
+                  .ant-tabs-nav-more {
+                      display: none;
+                  }
+              }
+        }
+    }
+
+    .challenges-main-content {
+        position: relative;
+        margin-top: 56px;
+        margin-bottom: 56px;
+
+        .overview-section {
+            ul.participate-rules {
+                list-style: disc;
+                padding-left: 25px;
+                
+                li {
+                    &::marker {
+                        color: blue;
+                        font-size: 2em;
+                    }
+                }
+            }
+            .find-more-hkt-btn {
+                background: #303efc;
+                color: $text-light;
+                border-color: transparent;
+            }
+
+            .overview-card {
+                padding: 17.5px 18px;
+                border-radius: 4px;
+
+                &.time-card {
+                    background-color: #303efc;
+                    color: $white-color;
+                }
+    
+                &.hackathon-detail-card {
+                    margin: 12px 0;
+                    background-color: $white-color;
+                }
+
+                &.tags-card {
+                    margin: 12px 0;
+                    background-color: $white-color;
+                }
+            }
+
+        }
+
+        .participants-section {
+            margin-top: 56px;
+            padding-bottom: 56px;
+            min-height: 70vh;
+            .select-sort {
+                .ant-select-selector {
+                    border-radius: 20px !important;
+                    border: none!important;
+                    padding-left: 16px!important;
+                }
+            }
+            .input-search-participants {
+                border-radius: 20px;
+                min-width: 450px;
+                padding: 8px 20px;
+                @include mobile {
+                   min-width: 360px;
+                }
+            }
+            .search-participants-btn {
+                font-weight: 600;
+                font-size: 14px!important;
+                background-color: $everglade-main;
+                color: #fff;
+                border: none;
+                border-radius: 20px;
+            }
+
+            .user-item {
+                padding: 32px 40px;
+                background-color: $white-color;
+                @include mobile {
+                    padding: 20px 20px;
+                }
+             
+            }
+        }
+
+        .project-gallery {
+            .project-gallery-search {
+                .input-search-submisstion-details {
+                    border-radius: 20px;
+                    min-width: 450px;
+                    padding: 8px 20px;
+                    @include mobile {
+                       min-width: 360px;
+                    }
+                }
+                .search-gallery-btn {
+                    font-weight: 600;
+                    font-size: 14px!important;
+                    background-color: $everglade-main;
+                    color: #fff;
+                    border: none;
+                    border-radius: 20px;
+                }
+                .decor-svg {
+                    position: absolute;
+                    right: 14px;
+                    top: 8px;
+                }
+            }
+            .project-gallery-content {
+                .likes {
+                    .liked-card-link {
+                        border-radius: 4px;
+
+                        .liked-card {
+                            border-radius: 4px;
+                            transition: all 0.5s;
+                            overflow: hidden;
+                            &:hover {
+                                box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.06), 0 3px 6px rgba(0, 0, 0,02%), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+                            }
+                            .liked-card-info {
+                                background-color: $white-color;
+                                padding: 13px 14px 24px;
+                                border-radius: 8px;
+                                border-bottom-left-radius: 0;
+                                border-bottom-right-radius: 0;
+
+                                .liked-card-ribbon {
+                                    z-index: 2;
+                                    width: 265px;
+                                    height: 26px;
+                                    background-color: #fcc300;
+                                    position: absolute;
+                                    text-align: center;
+                                    top: -25px;
+                                    left: -50px;
+                                    transform: rotate(-45deg);
+                                }
+
+                                .ribbon-text {
+                                    z-index: 2;
+                                    position: absolute;
+                                    left: 7px;
+                                    top: 20px;
+                                    transform: rotate(-45deg);
+                                    color: #816900;
+                                    font-weight: 700;
+                                }
+                                
+                                .project-card-img {
+                                    height: 220px;
+                                    img {
+                                        height: 100%;
+                                        object-fit: cover;
+                                    }
+                                }
+                            }
+
+                            .liked-card-social {
+                                padding: 15px 12px;
+                                background-color: #f2f2f2;
+                                border-radius: 8px;
+
+                            }
+                        
+                        }
+
+                    }
+                }
+            }
+        }
+
+        .updates {
+            
+        }
+
+        .discusstions {
+            .discusstions-list {
+                .discusstion-item {
+                    padding: 8px 22px;
+                    border-radius: 8px;
+                    border-bottom: 1px solid #f0f0f0;
+                    cursor: pointer;
+
+                    &:hover {
+                        background: $secondary-surface;
+                    }
+
+                    .chat-icon-wrapper {
+                        .number {
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%,-50%);
+                            font-weight: 700;
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+
+            .post-new-discussion-wrapper {
+                .post-new-discussion-btn {
+                    height: 48px;
+                    padding: 8px 24px;
+                    font-size: 18px;
+                    border-radius: 48px;
+                    background-color: #303efc!important;
+
+                    a {
+                        color: $text-light !important;
+                        border-color: transparent!important;
+                    }
+                    svg {
+                        position: absolute;
+                        top: -2px;
+                        right: -40px;
+                        height: 48px;
+                    }
+                }
+            }
+            
+            .discuss-btn {
+                background: transparent;
+                border: none;
+                padding: 4px;
+            }
+        }
+    }
+}

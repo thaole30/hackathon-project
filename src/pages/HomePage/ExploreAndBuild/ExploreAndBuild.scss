@@ -1,0 +1,66 @@
+@import "../../../style/style.scss";
+
+
+.explore-and-build {
+    min-height: 100vh;
+    padding: 140px 0 100px;
+    background-color: $white-color;
+    position: relative;
+    overflow: hidden;
+
+    img.img-bg {
+        position: absolute;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        top: 30%;
+        left: 55%;
+        transform: translate(-50%,-50%);
+        z-index: 0;
+    }
+    h1 {
+        @include textStyle($poppins, normal, 48px, $text-dark, 600, null, null);
+        margin-bottom: 72px !important;
+    }
+
+    .arrow-img {
+        @include mobile {
+            transform: rotate(90deg);
+            z-index: 10;
+        }
+    }
+
+    .card-item {
+        height: 490px;
+        border-radius: 32px;
+        padding: 60px;
+        background-color: $white-color;
+
+        img {
+            margin-left: -40px;
+            margin-top: -40px;
+        }
+        h3 {
+            @include textStyle($poppins, normal, 24px, $text-dark, 600, null, null);
+            margin-bottom: 20px;
+        }
+        p {
+            @include textStyle($rubik, normal, 18px, rgba(29, 38, 58, 0.7), 400, 28px, null);
+            margin-bottom: 100px !important;
+            min-height: 85px;
+        }
+
+        @media screen and (max-width: 960px) {
+            padding: 40px;
+        }
+
+        &.card-explore {
+            box-shadow: 35px 50px 50px 25px rgba(19, 23, 32, 0.03);
+        }
+
+        &.card-build {
+        border: 2px solid rgba(8,10,37,.1);
+
+        }
+    }
+}

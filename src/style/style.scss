@@ -1,0 +1,51 @@
+@import "./mixins";
+@import "./variable";
+@import "./reset";
+@import "./utilities";
+
+img {
+    max-width: 100%;
+}
+
+body {
+    .add-new-project-modal {
+        width: 1000px !important;
+        max-width: 100%;
+        &-content {
+            .add-project-btn-wrapper {
+                gap: 24px !important;
+                flex-wrap: wrap;
+                justify-content: center;
+                .add-project-radio-label {
+                    height: auto;
+                    padding: 12px 32px;
+                    width: 348px;
+                    text-align: center;
+                    border-radius: 4px;
+                }
+            }
+        }
+    }
+
+    .ant-select-dropdown {
+        margin-top: 250px !important;
+    }
+
+        .ant-picker-dropdown {
+            .ant-picker-panel-container {
+                border-radius: 10px;
+                padding: 16px 27px 27px;
+                .ant-picker-cell .ant-picker-cell-inner {
+                    min-width: 40px;
+                    height: 40px;
+                    line-height: 40px;
+                    border-radius: 50%;
+
+                    &::before {
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+
+}

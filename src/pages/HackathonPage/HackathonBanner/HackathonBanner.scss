@@ -1,0 +1,75 @@
+@import "../../../style/style.scss";
+
+
+.hackathon-banner {
+    background-position: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background: linear-gradient(
+      180deg,
+      #080a25,
+      rgba(8, 10, 37, 0.94375) 57.81%,
+      rgba(8, 10, 37, 0.79)
+    );
+    min-height: 564px;
+    overflow: hidden;
+    
+
+    .bonus-img-left {
+        left: 15%;
+    }
+    .bonus-img-left,
+    .bonus-img-right {
+        z-index: 2;
+        position: absolute;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        transform: translateX(-50%);
+    }
+    .bonus-img-right {
+        left: 85%;
+    }
+    .explore-banner-bg {
+        position: absolute;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        z-index: 0;
+        height: 564px;
+        object-fit: cover;
+    }
+
+    .banner-center-content {
+      z-index: 2;
+
+      h1 {
+        @include textStyle($poppins, normal, 64px, $white-color, 300, 85px, null);
+        letter-spacing: -0.01em;
+        margin-bottom: 1px;  
+        strong {
+            font-weight: 900;
+        }
+      }
+
+      p {
+        @include textStyle($rubik, normal, 32px, $white-color, 400, 55px, null);
+        letter-spacing: -0.01em;
+        opacity: 0.8;
+      }
+  
+      button.explore-now-btn {
+          min-width: 234px;
+          margin-top: 32px;
+          margin-bottom: 23px;
+      }
+    }
+
+    @media screen and (max-width: 960px) {
+        .bonus-img-left,
+        .bonus-img-right {
+            display: none;
+        }
+    }
+  }
+
