@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { Row, Col } from "antd";
 import "./SettingPage.scss";
-import ProfileInfo from "./RelativeRightContent/ProfileInfo";
+import ProfileInfo from "./RelativeRightContent/ProfileInfo/ProfileInfo";
 import Preferences from "./RelativeRightContent/Preferences";
 import Email from "./RelativeRightContent/Email";
 import Account from "./RelativeRightContent/Account";

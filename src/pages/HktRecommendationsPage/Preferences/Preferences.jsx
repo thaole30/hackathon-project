@@ -18,13 +18,18 @@ import { tags } from "../../HackathonPage/data/data";
 import CustomButton from "../../../components/CustomButton/CustomButton";
 import { useNavigate } from "react-router-dom";
 import { showMessage } from "../../../utils/showMessage";
+import moment from 'moment';
+import { updateUserThunk } from "../../../redux/userSlice";
+import { useDispatch } from "react-redux";
 
 const { Option } = Select;
 
 const Preferences = () => {
-  const [occupation, setOccupation] = useState("post-grad");
-  const navigate = useNavigate();
+  const [occupation, setOccupation] = useState(1);
 
+  
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [form] = Form.useForm();
 
@@ -54,7 +59,16 @@ const Preferences = () => {
 
   const onChangeOccupation = (e) => {
     console.log("radio checked", e.target.value);
-    setOccupation(e.target.value);
+    if(e.target.value == 0) {
+      form.setFieldsValue("workInTechYear", "");
+      form.setFieldsValue("workInTechMonth", "");
+    } else {
+      form.setFieldsValue("currentStudentLevel", "");
+      form.setFieldsValue("schoolName", "");
+      form.setFieldsValue("graduationMonth", "");
+      form.setFieldsValue("graduationYear", "");
+    }
+    setOccupation(Number(e.target.value));
   };
 
   function handleSelecWorkInTech(value) {
@@ -78,6 +92,7 @@ const Preferences = () => {
   }
 
   function onChangGraduationeYear(date, dateString) {
+    console.log("gradyear",moment(date).format("MM/DD/YYYY"));
     console.log(date, dateString);
   }
   function onChangeBirthYear(date, dateString) {
@@ -85,9 +100,18 @@ const Preferences = () => {
   }
 
   const onFinish = (values) => {
-    console.log("Success values", values);
+    // console.log("Success values", values);
+    const convertedValues = {
+      ...values,
+      birthYear: moment(values.birthYear).format("MM/DD/YYYY").split("/")[2],
+      graduationYear:values.graduationYear ? moment(values.graduationYear).format("MM/DD/YYYY").split("/")[2] : "",
+      workInTechYear: values.workInTechYear ? moment(values.workInTechYear).format("MM/DD/YYYY").split("/")[2] : ""
+    }
+
+    console.log("convertedValues", convertedValues);
+    dispatch(updateUserThunk(convertedValues));
     navigate('/');
-    showMessage("success", "all info has been saved");
+
   };
 
   const onFinishFailed = () => {};
@@ -103,7 +127,7 @@ const Preferences = () => {
           onFinishFailed={onFinishFailed}
           autoComplete="off"
           initialValues={{
-            ["occupation"]: "post-grad",
+            ["occupation"]: 1,
             ["employedInTech"]: true,
           }}
         >
@@ -209,12 +233,12 @@ const Preferences = () => {
             label={<p className="text-20 bold">Occupation?</p>}
           >
             <Radio.Group onChange={onChangeOccupation}>
-              <Radio value={"student"}>Student</Radio>
-              <Radio value={"post-grad"}>Professional / Post Grad</Radio>
+              <Radio value={0}>Student</Radio>
+              <Radio value={1}>Professional / Post Grad</Radio>
             </Radio.Group>
           </Form.Item>
 
-          {occupation === "post-grad" ? (
+          {occupation === 1 ? (
             <>
               <Form.Item
                 name="employedInTech"
@@ -230,8 +254,9 @@ const Preferences = () => {
                 </Radio.Group>
               </Form.Item>
 
+            <Space>
               <Form.Item
-                name="workInTech"
+                name="workInTechMonth"
                 label={
                   <p className="text-20 bold">I’ve worked in tech since</p>
                 }
@@ -242,11 +267,11 @@ const Preferences = () => {
                   },
                 ]}
               >
-                <Space>
-                  <Select
+                 <Select
                     showSearch
                     size="large"
-                    style={{ width: "200px" }}
+                    style={{ width: "300px" }}
+                    // className="w-100"
                     placeholder="Search to Select"
                     onSelect={handleSelecWorkInTech}
                     optionFilterProp="children"
@@ -266,15 +291,30 @@ const Preferences = () => {
                         {month}
                       </Option>
                     ))}
-                  </Select>
-                  <DatePicker
-                    onChange={onChangeWorkInTechYear}
-                    picker="year"
-                    size="large"
-                    //  defaultValue={moment('2015/01/01', 'YYYY')}
-                  />
-                </Space>
+                </Select>
               </Form.Item>
+              <Form.Item
+                    name="workInTechYear"
+                    label={
+                      <p className="text-20 bold">Worked Year</p>
+                    }
+                    // rules={[
+                    //   {
+                    //     required: true,
+                    //     message: "Can't be blank!",
+                    //   },
+                    // ]}
+                  >
+                     
+                    <DatePicker
+                      onChange={onChangeWorkInTechYear}
+                      picker="year"
+                      size="large"
+                      //  defaultValue={moment('2015/01/01', 'YYYY')}
+                    />
+                </Form.Item>
+              </Space>
+             
             </>
           ) : (
             <>
@@ -406,20 +446,22 @@ const Preferences = () => {
           )}
 
           <Form.Item
-            name="birthDay"
-            label={<p className="text-20 bold">Birth month</p>}
-            rules={[
-              {
-                required: true,
-                message: "This field is required",
-              },
-            ]}
           >
-            <Space>
+          <Space>
+            <Form.Item
+                name="birthMonth"
+                label={<p className="text-20 bold">Birth month</p>}
+                rules={[
+                  {
+                    required: true,
+                    message: "This field is required",
+                  },
+                ]}
+              >
               <Select
                 showSearch
                 size="large"
-                style={{ width: "200px" }}
+                style={{ width: "300px" }}
                 placeholder="Search to Select"
                 onSelect={handleSelecBirthtMonth}
                 optionFilterProp="children"
@@ -439,12 +481,25 @@ const Preferences = () => {
                   </Option>
                 ))}
               </Select>
-              <DatePicker
-                onChange={onChangeBirthYear}
-                picker="year"
-                size="large"
-                //  defaultValue={moment('2015/01/01', 'YYYY')}
-              />
+          </Form.Item>
+              
+              <Form.Item
+                name="birthYear"
+                label={<p className="text-20 bold">Birth year</p>}
+                rules={[
+                  {
+                    required: true,
+                    message: "This field is required",
+                  },
+                ]}
+              >
+                <DatePicker
+                  onChange={onChangeBirthYear}
+                  picker="year"
+                  size="large"
+                  //  defaultValue={moment('2015/01/01', 'YYYY')}
+                />
+              </Form.Item>
             </Space>
           </Form.Item>
 

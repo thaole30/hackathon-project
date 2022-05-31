@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import AntdDrawer from '../components/AntdDrawer/AntdDrawer';
@@ -38,62 +39,66 @@ import UpdateHkt from '../pages/ManageHackathon/ChildPage/UpdateHkt/UpdateHkt';
 import DiscussionHkt from '../pages/ManageHackathon/ChildPage/DiscussionHkt/DiscussionHkt';
 
 const Navigator = ({ appContext }) => {
+  const queryClient = new QueryClient();
+
   return (
-    <BrowserRouter>
-        <ToastContainer />
-        {/* <ProgressLoading/> */}
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+          <ToastContainer />
+          {/* <ProgressLoading/> */}
 
-        <Routes>
-          <Route path="/hackathon-recommendations" element={<HktRecommendationsPage/>} />
-          <Route path="/" element={<RootLayout />}>
-            <Route index element={<HomePage/>} />
+          <Routes>
+            <Route path="/hackathon-recommendations" element={<HktRecommendationsPage/>} />
+            <Route path="/" element={<RootLayout />}>
+              <Route index element={<HomePage/>} />
 
-            <Route path="user/sign-in" element={<SignInPage />} />
-            <Route path="user/sign-up" element={<SignUpPage />} />
+              <Route path="user/sign-in" element={<SignInPage />} />
+              <Route path="user/sign-up" element={<SignUpPage />} />
 
 
-            <Route path="hackathon" element={<HackathonPage />} />
-            <Route path="hackathon/new" element={<CreateHackathon />} />
-            <Route path="hackathon/list" element={<HackathonListPage />} />
-            <Route path="hackathon/manage/:hackathonId" element={<ManageHackathon />} >
-              <Route path="edit" element={<EditHkt />} />
-              <Route path="update" element={<UpdateHkt />} />
-              <Route path="discussion" element={<DiscussionHkt />} />
+              <Route path="hackathon" element={<HackathonPage />} />
+              <Route path="hackathon/new" element={<CreateHackathon />} />
+              <Route path="hackathon/list" element={<HackathonListPage />} />
+              <Route path="hackathon/manage/:hackathonId" element={<ManageHackathon />} >
+                <Route path="edit" element={<EditHkt />} />
+                <Route path="update" element={<UpdateHkt />} />
+                <Route path="discussion" element={<DiscussionHkt />} />
+              </Route>
+
+              <Route path="project/edit/:projectId" element={<EditProject />} />
+
+              <Route path="software" element={<ProjectPage />} />
+              <Route path="project/:projectId" element={<ProjectDetail />} />
+              <Route path="payment" element={<PaymentPage />} />
+              <Route path="portfolio/:userName" element={<PortfolioPage />} />
+              <Route path="settings" element={<SettingPage />} />
+
+
+              <Route path="challenges" element={<Challenges/>}>
+                <Route path="overview/:hackathonId" element={<Overview />} />
+                <Route path="my-project/:hackathonId" element={<MyProjects />} />
+                <Route path="participants/:hackathonId" element={<Participants />} />
+                <Route path="rules/:hackathonId" element={<Rules />} />
+                <Route path="project-gallery/:hackathonId" element={<ProjectGallery />} />
+                <Route path="updates/:hackathonId" element={<Updates />} />
+                <Route path="updates/:hackathonId/detail" element={<UpdatesDetail />} />
+                <Route path="discussions/:hackathonId" element={<Discusstions />} />
+              </Route>
+
+
+              <Route path="help" element={<HelpPage />}/>
+              <Route path="help/categories/General" element={<General />} />
+              <Route path="help/categories/General/:articleName" element={<GeneralToArticle />} />
+              <Route path="help/categories/Hackathon_Participants" element={<HackathonParticipants />} />
+              <Route path="help/categories/Hackathon_Managers" element={<HackathonParticipants />} />
+
+
             </Route>
+          </Routes>
+          
 
-            <Route path="project/edit/:projectId" element={<EditProject />} />
-
-            <Route path="software" element={<ProjectPage />} />
-            <Route path="project/:projectId" element={<ProjectDetail />} />
-            <Route path="payment" element={<PaymentPage />} />
-            <Route path="portfolio/:userName" element={<PortfolioPage />} />
-            <Route path="settings" element={<SettingPage />} />
-
-
-            <Route path="challenges" element={<Challenges/>}>
-              <Route path="overview/:hackathonId" element={<Overview />} />
-              <Route path="my-project/:hackathonId" element={<MyProjects />} />
-              <Route path="participants/:hackathonId" element={<Participants />} />
-              <Route path="rules/:hackathonId" element={<Rules />} />
-              <Route path="project-gallery/:hackathonId" element={<ProjectGallery />} />
-              <Route path="updates/:hackathonId" element={<Updates />} />
-              <Route path="updates/:hackathonId/detail" element={<UpdatesDetail />} />
-              <Route path="discussions/:hackathonId" element={<Discusstions />} />
-            </Route>
-
-
-            <Route path="help" element={<HelpPage />}/>
-            <Route path="help/categories/General" element={<General />} />
-            <Route path="help/categories/General/:articleName" element={<GeneralToArticle />} />
-            <Route path="help/categories/Hackathon_Participants" element={<HackathonParticipants />} />
-            <Route path="help/categories/Hackathon_Managers" element={<HackathonParticipants />} />
-
-
-          </Route>
-        </Routes>
-        
-
-    </BrowserRouter>
+      </BrowserRouter>
+    </QueryClientProvider>
   )
 }
 

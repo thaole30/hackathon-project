@@ -1,0 +1,31 @@
+
+.profile-info {
+    .upload-photo-section {
+      
+        .upload-component {
+            width: 100px;
+            height: 100px;
+
+            .ant-upload.ant-upload-drag {
+                border-radius: 50%;
+                overflow: hidden;
+            }
+        }
+    
+        .ant-upload-list.ant-upload-list-picture-card {
+            width: 100px !important;
+            height: 100px !important;
+            .ant-upload-list-item {
+                padding: 0;
+                border-radius: 50%;
+                overflow: hidden;
+            }
+        }
+
+        .ant-upload .ant-upload-btn {
+            padding: 0;
+            height: 100px;
+        }
+
+    }
+}

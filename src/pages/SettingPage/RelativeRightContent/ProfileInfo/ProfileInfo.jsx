@@ -1,43 +1,92 @@
 import React, {useState} from "react";
-import MyDivider from "../../../components/MyDivider/MyDivider";
+import MyDivider from "../../../../components/MyDivider/MyDivider";
 import { Form, Input, Button, Space, Upload, Row, Col } from "antd";
-import CustomButton from "./../../../components/CustomButton/CustomButton";
-import Demo from "./Demo";
+import CustomButton from "../../../../components/CustomButton/CustomButton";
+import Demo from "../Demo";
 import { useSelector } from "react-redux";
+import HktHeaderLogo from '../../../ManageHackathon/ChildPage/EditHkt/Design/HktHeaderLogo/HktHeaderLogo';
+import UploadPhoto from './UploadPhoto';
+import "./ProfileInfo.scss";
+import { uploadFile } from "../../../../api/upload";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { getUserApi, updateUserApi } from "../../../../api/auth";
+
+const uploadImgFile = async (imgFile) => {
+  const imgRes = await uploadFile(imgFile);
+  return imgRes;
+}
 
 const ProfileInfo = () => {
+  const queryClient = useQueryClient();
+  const [form] = Form.useForm();
+
 
   const { userInfo } = useSelector((state) => state.user);
+  const [uploadFile, setUploadFile] = useState({});
+
+  const [editInfo, setEditInfo] = useState({
+
+  });
+  console.log("editInfo", editInfo);
 
 
-  const [form] = Form.useForm();
-  const [fileList, setFileList] = useState([
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+  const getInfo = async () => {
+    return getUserApi()
+      .then((res) => {
+        const { password, ...data } = res.data;
+        setEditInfo({ ...editInfo, ...data });
+        form.setFieldsValue({
+          ["firstName"]: data.firstName,
+          ["lastName"]: data.lastName,
+      });
+        // form.setFieldsValue("lastName", data.lastName);
+
+        return { ...editInfo, ...data };
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  }
+
+  const { data, isSuccess } = useQuery("get-profile", getInfo, {
+    initialData: {},
+  });
+
+
+
+  const handleChangeAvatar = (file) => {
+    console.log("uploaded file", file);
+    form.setFieldsValue("img", file);
+    setUploadFile(file);
+  }
+
+  const updateInfo = async (dataForm) => {
+    const {data: uploadImgLink} = await uploadImgFile(uploadFile);
+    console.log("uploadImgLink", uploadImgLink);
+    dataForm.img = uploadImgLink;
+
+    return updateUserApi(dataForm)
+  }
+
+  const mutationUpdateUser = useMutation(updateInfo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("get-profile");
     },
-  ]);
+  });
 
-  const onChange = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
-  };
-
-
-  const normFile = (e) => {
-    console.log('Upload event:', e);
-    console.log("e.fileList", e.fileList);
-  
-    // if (Array.isArray(e)) {
-    //   return e;
-    // }
-  
-    // return e && e.fileList;
-  };
 
   const onFinish = (values) => {
     console.log("Success:", values);
+
+    mutationUpdateUser.mutate(values);
+    
+    // const convertedValues = {
+    //   ...values,
+    //   "img": uploadFile,
+    // }
+
+    // console.log("convertedValues", convertedValues);
+
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -59,23 +108,16 @@ const ProfileInfo = () => {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
         initialValues={{
-            ["firstName"]: userInfo.firstName,
-            ["lastName"]: userInfo.lastName,
+            ["firstName"]: editInfo?.firstName,
+            ["lastName"]: editInfo?.lastName,
         }}
       >
-        {/* <Form.Item
-          name="avatar"
-          valuePropName="fileList"
-          getValueFromEvent={normFile}
+        <Form.Item
+          name="img"
           label={<p className="text-20 bold">Photo</p>}
         >
-           <Upload
-                fileList={fileList}
-                onChange={onChange}
-            >
-                {fileList.length < 5 && '+ Upload'}
-            </Upload>
-        </Form.Item> */}
+           <UploadPhoto userInfo={editInfo} handleChangeAvatar={handleChangeAvatar}/>
+        </Form.Item>
 
         <Row gutter={[20, 20]}>
             <Col xs={24} lg={12}>

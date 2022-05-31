@@ -34,3 +34,27 @@ export const successFetchProjectDetail = (projectId) => ({
 export const failFetchProjectDetail = () => ({
     type: types.FAIL_FETCH_PROJECT_DETAIL,
 })
+
+
+export const showLoading = () => ({
+    type: types.SHOW_LOADING,
+})
+
+export const hideLoading = () => ({
+    type: types.HIDE_LOADING,
+})
+
+export const logOut = () => ({
+    type: types.LOG_OUT,
+})
+
+export const signIn = (userInfo) => ({
+    type: types.SIGN_IN,
+    payload: userInfo,
+})
+
+
+export const signUp = (userInfo) => ({
+    type: types.SIGN_UP,
+    payload: userInfo,
+})
