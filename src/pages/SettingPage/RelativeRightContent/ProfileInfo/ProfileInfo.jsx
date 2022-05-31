@@ -1,15 +1,16 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import MyDivider from "../../../../components/MyDivider/MyDivider";
 import { Form, Input, Button, Space, Upload, Row, Col } from "antd";
 import CustomButton from "../../../../components/CustomButton/CustomButton";
 import Demo from "../Demo";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import HktHeaderLogo from '../../../ManageHackathon/ChildPage/EditHkt/Design/HktHeaderLogo/HktHeaderLogo';
 import UploadPhoto from './UploadPhoto';
 import "./ProfileInfo.scss";
 import { uploadFile } from "../../../../api/upload";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getUserApi, updateUserApi } from "../../../../api/auth";
+import { normalUpdate } from "../../../../redux/userSlice";
 
 const uploadImgFile = async (imgFile) => {
   const imgRes = await uploadFile(imgFile);
@@ -19,9 +20,8 @@ const uploadImgFile = async (imgFile) => {
 const ProfileInfo = () => {
   const queryClient = useQueryClient();
   const [form] = Form.useForm();
+  const dispatch = useDispatch();
 
-
-  const { userInfo } = useSelector((state) => state.user);
   const [uploadFile, setUploadFile] = useState({});
 
   const [editInfo, setEditInfo] = useState({
@@ -31,13 +31,20 @@ const ProfileInfo = () => {
 
 
   const getInfo = async () => {
+    console.log("go to getInfooooooooooo");
     return getUserApi()
       .then((res) => {
         const { password, ...data } = res.data;
+        console.log("go to getInfooooooooooo data", data);
         setEditInfo({ ...editInfo, ...data });
         form.setFieldsValue({
           ["firstName"]: data.firstName,
           ["lastName"]: data.lastName,
+          ["bio"]: data?.bio,
+          ["github"]: data?.github,
+          ["linkedIn"]: data?.linkedIn,
+          ["twitter"]: data?.twitter,
+          ["website"]: data?.website,
       });
         // form.setFieldsValue("lastName", data.lastName);
 
@@ -48,9 +55,14 @@ const ProfileInfo = () => {
       });
   }
 
-  const { data, isSuccess } = useQuery("get-profile", getInfo, {
-    initialData: {},
-  });
+  useEffect(() => {
+    getInfo();
+  }, [])
+
+  // const { data, isSuccess } = useQuery("get-profile", getInfo, {
+  //   initialData: {},
+  //   staleTime: 1000 * 60 * 5,
+  // });
 
 
 
@@ -64,14 +76,19 @@ const ProfileInfo = () => {
     const {data: uploadImgLink} = await uploadImgFile(uploadFile);
     console.log("uploadImgLink", uploadImgLink);
     dataForm.img = uploadImgLink;
+    dataForm.name = `${dataForm.firstName}${dataForm.lastName}`;
+    
+    const updatedUser = await updateUserApi(dataForm)
+    getInfo();
+    dispatch(normalUpdate(dataForm));
 
-    return updateUserApi(dataForm)
+    return updatedUser;
   }
 
   const mutationUpdateUser = useMutation(updateInfo, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("get-profile");
-    },
+    // onSuccess: () => {
+    //   queryClient.invalidateQueries("get-profile");
+    // },
   });
 
 
@@ -79,13 +96,7 @@ const ProfileInfo = () => {
     console.log("Success:", values);
 
     mutationUpdateUser.mutate(values);
-    
-    // const convertedValues = {
-    //   ...values,
-    //   "img": uploadFile,
-    // }
-
-    // console.log("convertedValues", convertedValues);
+  
 
   };
 
@@ -110,6 +121,11 @@ const ProfileInfo = () => {
         initialValues={{
             ["firstName"]: editInfo?.firstName,
             ["lastName"]: editInfo?.lastName,
+            ["bio"]: editInfo?.bio,
+            ["github"]: editInfo?.github,
+            ["linkedIn"]: editInfo?.linkedIn,
+            ["twitter"]: editInfo?.twitter,
+            ["website"]: editInfo?.website,
         }}
       >
         <Form.Item

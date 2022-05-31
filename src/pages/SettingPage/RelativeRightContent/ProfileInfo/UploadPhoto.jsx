@@ -22,7 +22,8 @@ const UploadPhoto = ({userInfo, addedClass, handleChangeAvatar}) => {
     console.log("fileList", fileList);
     
     useEffect(() => {
-      setFileList([
+      console.log("userInfo", userInfo);
+      setFileList(prevState => [
         {
           uid: '-1',
           name: 'example.png',
@@ -30,7 +31,7 @@ const UploadPhoto = ({userInfo, addedClass, handleChangeAvatar}) => {
           url: userInfo.img,
         },
       ])
-    }, userInfo)
+    }, [userInfo]);
 
   
   const props = {

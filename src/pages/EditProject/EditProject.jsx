@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useLocation, useParams } from "react-router-dom";
 import { Row, Col, Form, Input, Select, Space, Avatar, Button } from "antd";
 import {
@@ -12,36 +12,105 @@ import { languages } from "./data";
 import { useSelector } from "react-redux";
 import { categories } from "../ProjectPage/data/data";
 import Thumbnail from "./Thumbnail";
+import { getProjectApi, updateProjectApi } from "../../api/project";
+import CustomButton from "../../components/CustomButton/CustomButton";
+import { uploadFile } from "../../api/upload";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+
 
 const { TextArea } = Input;
 const { Option } = Select;
 
 const EditProject = () => {
   const { userInfo } = useSelector((state) => state.user);
+  const [projectInfo, setProjectInfo] = useState(false);
+  // console.log("projectInfo", projectInfo);
+
+  const [thumbUploadFile, setThumbUploadFile] = useState({});
+  // console.log("thumbUploadFile", thumbUploadFile);
+
+
   const [form] = Form.useForm();
 
   const { projectId } = useParams();
   console.log("projectId", projectId);
   const { state } = useLocation();
-  const { projectName } = state;
-  console.log("projectName", projectName);
+  // const { projectName } = state;
+  // console.log("projectName", projectName);
 
   const onChangeTextArea = (e) => {
     console.log("Change:", e.target.value);
   };
 
+  const handleChangeSelect = (value) => {
+    console.log(`selected ${value}`);
+  };
+
+  const getInfoProject = async (projectId) => {
+    // console.log("go to getInfooooooooooo", projectId);
+    return getProjectApi(projectId)
+      .then((res) => {
+        const project  = res.data;
+        console.log("go to getInfooooooooooo data", project);
+        setProjectInfo(project);
+        form.setFieldsValue({
+          ["name"]: project.name,
+          ["desc"]: project.desc,
+          ["about"]: project.about,
+          ["action"]: project.action,
+          ["demoLink"]: project.demoLink,
+          ["tags"]: project.tags,
+      });
+        // form.setFieldsValue("lastName", data.lastName);
+
+        return project;
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  }
+
+  useEffect(() => {
+    getInfoProject(projectId);
+  }, [projectId])
+
+  const updateProjectInfo = async (dataForm) => {
+    try {
+      const {data: uploadImgLink} = await uploadFile(thumbUploadFile);
+      console.log("uploadImgLink", uploadImgLink);
+      dataForm.img = uploadImgLink;
+      console.log("dataForm", dataForm);
+      
+      const updatedProject = await updateProjectApi(projectId,dataForm)
+      getInfoProject();
+      showMessage("success", "Update project success!");
+      
+      return updatedProject;
+      
+    } catch (error) {
+      showMessage("error", "Update project failed!");
+      console.log("project updated error", error);
+    }
+  }
+
+
+  const mutationUpdateProject = useMutation(updateProjectInfo, {
+    // onSuccess: () => {
+    //   queryClient.invalidateQueries("get-profile");
+    // },
+  });
+
   const onFinish = (values) => {
-    console.log("Success:", values);
-    showMessage("success", "Submit success!");
+    // console.log("Success:", values);
+    // showMessage("success", "Submit success!");
+    mutationUpdateProject.mutate(values);
+
   };
 
   const onFinishFailed = () => {
     showMessage("error", "Submit failed!");
   };
 
-  const handleChangeSelect = (value) => {
-    console.log(`selected ${value}`);
-  };
 
   return (
     <div className="edit-project">
@@ -55,13 +124,13 @@ const EditProject = () => {
             onFinishFailed={onFinishFailed}
             autoComplete="off"
             initialValues={{
-              ["projectName"]: projectName,
+              ["name"]: projectInfo?.name,
           }}
           >
             <Row gutter={[20, 20]}>
               <Col xs={24} lg={16}>
                 <Form.Item
-                  name="projectName"
+                  name="name"
                   label={
                     <p className="text-20 bold">What's your project called?</p>
                   }
@@ -81,7 +150,7 @@ const EditProject = () => {
                 </Form.Item>
 
                 <Form.Item
-                  name="idea"
+                  name="desc"
                   label={
                     <p className="text-20 bold">Here's the elevator pitch</p>
                   }
@@ -92,10 +161,10 @@ const EditProject = () => {
                     },
                   ]}
                 >
-                  <p className="secondary text-16 mb-16">
+                  {/* <p className="secondary text-16 mb-16">
                     What's your idea? This will be a short tagline for the
                     project
-                  </p>
+                  </p> */}
                   <TextArea
                     showCount
                     maxLength={200}
@@ -105,7 +174,7 @@ const EditProject = () => {
                 </Form.Item>
 
                 <Form.Item
-                  name="idea"
+                  name="tags"
                   label={<p className="text-20 bold">Built with</p>}
                   rules={[
                     {
@@ -114,11 +183,12 @@ const EditProject = () => {
                     },
                   ]}
                 >
-                  <p className="secondary text-16 mb-16">
+                  {/* <p className="secondary text-16 mb-16">
                     What languages, frameworks, platforms, cloud services,
                     databases, APIs, or other technologies did you use?
-                  </p>
+                  </p> */}
                   <Select
+                    mode="multiple"
                     size="large"
                     placeholder="Please select a language"
                     onChange={handleChangeSelect}
@@ -154,11 +224,11 @@ const EditProject = () => {
                     },
                   ]}
                 >
-                  <p className="secondary text-16 mb-16">
+                  {/* <p className="secondary text-16 mb-16">
                     Be sure to write what inspired you, what you learned, how
                     you built your project, and the challenges you faced. Format
                     your story in Markdown
-                  </p>
+                  </p> */}
                   <TextArea
                     style={{ height: "auto", minHeight: "250px" }}
                     defaultValue="
@@ -289,10 +359,10 @@ const EditProject = () => {
                     },
                   ]}
                 >
-                  <p className="secondary text-16 mb-16">
+                  {/* <p className="secondary text-16 mb-16">
                     This video will be embedded at the top of your project page.
                     Read more about uploading videos.
-                  </p>
+                  </p> */}
                   <Input size="large" placeholder="YouTube or Vimeo URL" />
                 </Form.Item>
 
@@ -306,9 +376,9 @@ const EditProject = () => {
                     },
                   ]}
                 >
-                  <p className="secondary text-16 mb-16">
+                  {/* <p className="secondary text-16 mb-16">
                   Please select those Go-To Actions that are applicable for your project, and we will help you connect with interested parties.
-                  </p>
+                  </p> */}
                   <Select
                     size="large"
                     placeholder="Please select"
@@ -323,9 +393,20 @@ const EditProject = () => {
                 </Form.Item>
               </Col>
               <Col xs={24} lg={8}>
-                <Thumbnail projectName={projectName}/>
+                <Thumbnail projectInfo={projectInfo} setUploadFile={setThumbUploadFile}/>
               </Col>
             </Row>
+            <div className="mt-16">
+              <CustomButton
+                type="submit"
+                name="orange"
+                size="small"
+                addedClass="white"
+                // onClick={saveHeaderDesign}
+              >
+                Save changes
+              </CustomButton>
+            </div>
           </Form>
         </div>
       </div>

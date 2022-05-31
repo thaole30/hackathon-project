@@ -8,7 +8,7 @@ export const AppContext = createContext();
 export function AppContextProvider({children}) {
     const [value, dispatch] = useReducer(appReducer, {
         isDrawerOpen: false,
-        isLoading: true,
+        isLoading: false,
         isError: false,
         isLogin: false,
         userInfo: {},

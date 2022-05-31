@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { startFetchProjectDetail, successFetchProjectDetail } from '../../contexts/appContext/appActions';
+import SpinLoading from '../../components/SpinLoading/SpinLoading';
+import { failFetchProjectDetail, startFetchProjectDetail, successFetchProjectDetail } from '../../contexts/appContext/appActions';
 import { AppContext } from '../../contexts/appContext/appContext';
 import "./ProjectDetail.scss";
 import ProjectDetailBanner from './ProjectDetailBanner';
@@ -11,14 +12,21 @@ const ProjectDetail = () => {
     const {projectId} = useParams();
     const {appContext, dispatch} = useContext(AppContext);
     console.log("appContext", appContext);
-    const {projectDetail} = appContext;
+    const {projectDetail, isLoading} = appContext;
+    console.log("isLoading", isLoading);
     console.log("projectDetail", projectDetail)
 
     useEffect(() => {
       if(projectId) {
-        const fetchProjectDetail = async () => {
+          const fetchProjectDetail = async () => {
             dispatch(startFetchProjectDetail());
-            dispatch(successFetchProjectDetail(projectId));
+          try {
+            setTimeout(() => {
+              dispatch(successFetchProjectDetail(projectId));
+            }, 2000)
+          } catch (error) {
+            dispatch(failFetchProjectDetail());
+          }
 
         }
         fetchProjectDetail();
@@ -27,6 +35,15 @@ const ProjectDetail = () => {
     
 
     console.log("projectId in ProjectDetail", projectId);
+
+    if (isLoading) {
+      return (
+        <>
+          {/* <ProgressLoading/> */}
+          <SpinLoading />
+        </>
+      );
+    }
 
   return (
     <div className="project-detail">

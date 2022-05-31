@@ -8,6 +8,7 @@ import MyModal from "../../../../components/MyModal/MyModal";
 import MyInput from "./../../../../components/MyInput/MyInput";
 import { showMessage } from "../../../../utils/showMessage";
 import uuid from 'react-uuid';
+import { createProjectApi } from "../../../../api/project";
 
 const PersonalInfo = () => {
   const { userInfo } = useSelector((state) => state.user);
@@ -21,11 +22,18 @@ const PersonalInfo = () => {
     setProjectType(e.target.value);
   }
 
+  const createNewProject = async (data) => {
+    const {data: newProject} = await createProjectApi(data);
+    console.log("newProject", newProject);
+    navigate(`/project/edit/${newProject._id}`, {state: newProject});
+
+  }
+
   const onFinish = (values) => {
     console.log('Success:', values);
     showMessage("success", "Submit success!");
     setIsOpenModal(false);
-    navigate(`/project/edit/${uuid()}`, {state: values});
+    createNewProject(values);
 
   };
 
@@ -199,7 +207,7 @@ const PersonalInfo = () => {
                   autoComplete="off"
                 >
                   <Form.Item 
-                    name="projectName"
+                    name="name"
                     label="What's your project called?"
                     rules={[
                         {

@@ -1,15 +1,23 @@
-import React,  { useState } from 'react';
+import React,  { useEffect, useState } from 'react';
 import { Upload, Button, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import CustomButton from '../../components/CustomButton/CustomButton';
 
-const Thumbnail = ({projectName}) => {
+const Thumbnail = ({projectInfo, setUploadFile}) => {
+    // console.log("projectInfo thumbnail", projectInfo)
 
     // const [thumbnailFile, setThumbnailFile] = use
     const [thumbnailImg, setThumbnailImg] = useState({
-        imgUrl: "https://crowdhack.io/static/media/thumbnail-placeholder.e45c0561.jpg",
+        imgUrl: "",
     });
 
+    useEffect(() => {
+        setThumbnailImg({
+            imgUrl: projectInfo?.img,
+        })
+    }, [projectInfo])
+
+    console.log("thumbnailImg", thumbnailImg);
 
     const props = {
         beforeUpload: file => {
@@ -23,10 +31,11 @@ const Thumbnail = ({projectName}) => {
             reader.readAsDataURL(file);
             reader.onloadend = () => {
                 setThumbnailImg({
-                imgUrl: URL.createObjectURL(file),
-                detail: file,
-                imgName: file.name,
-            })
+                    imgUrl: URL.createObjectURL(file),
+                    detail: file,
+                    imgName: file.name,
+                })
+                setUploadFile(file);
             }
         },
       };
@@ -38,7 +47,7 @@ const Thumbnail = ({projectName}) => {
             <img className="w-100" src={thumbnailImg.imgUrl} alt="thumbnail-img" />
             <div className="thumbnail-body">
                 <h4 className="h3 bold text-16">
-                    {projectName}
+                    {projectInfo?.name}
                 </h4>
             </div>
         </div>

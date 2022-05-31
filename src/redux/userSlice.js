@@ -63,6 +63,20 @@ export const userSlice = createSlice({
   },
 
   reducers: {
+    normalUpdate: (state, action) => {
+      console.log("userInfo updated", action.payload);
+      state.userInfo = {
+        ...state.userInfo,
+        ...action.payload,
+      };
+      localStorage.setItem('userInfo', JSON.stringify({
+        ...state.userInfo,
+        ...action.payload,
+      }));
+
+      showMessage("success", "All info has been saved");
+
+    },
     logOut: (state) => {
       state.isLogin = false;
       state.userInfo = null;
@@ -143,6 +157,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { logOut } = userSlice.actions;
+export const { logOut, normalUpdate } = userSlice.actions;
 
 export default userSlice.reducer;

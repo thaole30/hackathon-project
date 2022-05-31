@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const MyHackathonCard = ({item}) => {
   return (
-    <NavLink to="/challenges/overview/id" className="my-hackathon-card-link">
+    <NavLink to={`/challenges/overview/${item.id}`} className="my-hackathon-card-link">
     <div className="my-hackathon-card-wrapper relative">
       <div className="hackathon-stick"></div>
       <Row gutter={[16, 16]}>
