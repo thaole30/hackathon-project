@@ -6,13 +6,14 @@ import { AppContext } from '../../../contexts/appContext/appContext';
 import {startFetchProjectDetail, successFetchProjectDetail } from './../../../contexts/appContext/appActions';
 
 
+
 const ProjectCard = ({project}) => {
 
-   
+
   return (
     <Col xs={24} md={12} xl={8}>
         <div className="project-card h-100">
-            <NavLink className="f f-column h-100" to={`/project/${project.id}`}>
+            <NavLink className="f f-column h-100" to={`/project/${project._id}`}>
                 <div className="project-card-img">
                   <img src={project.img} alt="" />  
                 </div>

@@ -102,7 +102,8 @@ const Preferences = () => {
     console.log("birthYear", values.birthYear);
     const convertedValues = {
       ...values,
-      birthYear: moment(values.birthYear).format("MM/DD/YYYY").split("/")[2],
+      // birthYear: moment(values.birthYear).format("MM/DD/YYYY").split("/")[2],
+      birthYear: values.birthYear ? moment(values.birthYear).format("MM/DD/YYYY").split("/")[2] : "",
       graduationYear:values.graduationYear ? moment(values.graduationYear).format("MM/DD/YYYY").split("/")[2] : "",
       workInTechYear: values.workInTechYear ? moment(values.workInTechYear).format("MM/DD/YYYY").split("/")[2] : ""
     }
@@ -146,7 +147,7 @@ const Preferences = () => {
           ["workInTechYear"]: userInfo.workInTechYear && moment(userInfo.workInTechYear, "YYYY"),
           // ["birthMonth"]: moment(personalInfo.birthDay, "MM"),
           ["birthMonth"]: userInfo.birthMonth,
-          ["birthYear"]: moment(userInfo.birthYear, 'YYYY'),
+          ["birthYear"]: userInfo.birthYear && moment(userInfo.birthYear, "YYYY"),
           // ["birthYear"]: userInfo.birthYear,
         }}
       >

@@ -1,22 +1,78 @@
 import React, { useState } from "react";
-import { Row, Col, Tag, Space, Avatar, Button } from "antd";
+import { Row, Col, Tag, Space, Avatar, Button, Form, Input} from "antd";
 import MyDivider from "./../../components/MyDivider/MyDivider";
 import IconButton from "../../components/IconButton/IconButton";
 import ProjectDetailComments from "./ProjectDetailComments";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { PlusOutlined, CheckOutlined, CloseOutlined } from "@ant-design/icons";
+import CustomButton from "../../components/CustomButton/CustomButton";
+import { updateProjectApi } from "../../api/project";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { showMessage } from "../../utils/showMessage";
+import { AiFillEye } from "react-icons/ai";
+import { BsFillTrashFill } from "react-icons/bs";
+import useProjectInfoQuery from './../../query/useProjectInfoQuery';
 
-const ProjectDetailMain = ({ projectDetail }) => {
+
+const { TextArea } = Input;
+
+
+const ProjectDetailMain = ({ projectDetail, mutationUpdateProject }) => {
+
+  const {projectId} = useParams();
   const { userInfo } = useSelector((state) => state.user);
+  const isMyProject = projectDetail.creator._id === userInfo._id;
+  const [isEdittingContribution, setIsEditingContribution] = useState(!projectDetail.contribution);
+  console.log("isEdittingContribution", isEdittingContribution, projectDetail.contribution);
+
+  const [form] = Form.useForm();
+
   const [ isYellow, setIsYellow ] = useState(true);
+  const navigate = useNavigate();
+
+
+  const onChangeContribution = (e) => {
+    console.log(e.target.value);
+  }
+
+  // const updateProjectInfo = async ({id, values}) => {
+  //   try {
+  //     const updatedProject = await updateProjectApi(id,values)
+  //     console.log("updatedProject", updatedProject);
+  //     return updatedProject;
+      
+  //   } catch (error) {
+  //     console.log("project updated error", error);
+  //   }
+  // }
+
+  // const queryClient = useQueryClient()
+
+  // const mutationUpdateProject = useMutation(updateProjectInfo, {
+  //     onSuccess: () => {
+  //       queryClient.invalidateQueries('get-project')
+  //     }
+
+  // });
+
+  const onFinish = (values) => {
+    mutationUpdateProject.mutate({id: projectDetail._id, values});
+    setIsEditingContribution(false);
+    showMessage("success", "Update project contribution success!");
+
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
 
   return (
     <div className="project-detail-main">
       <div className="container">
         <h1 className="text-36 mb-24">Story</h1>
         <Row gutter={[20, 20]}>
-          <Col xs={24} lg={18}>
+          <Col xs={24} lg={16}>
             <div className="project-img-wrapper">
               <img src={projectDetail.img} alt="" />
             </div>
@@ -102,16 +158,99 @@ const ProjectDetailMain = ({ projectDetail }) => {
             <h1 className="text-36 mb-24">Updates</h1>
             <ProjectDetailComments />
           </Col>
-          <Col xs={24} lg={6}>
-            <h1 className="text-36 mb-24">CREATED BY</h1>
+          <Col xs={24} lg={8}>
+        
+            {
+              isMyProject && (
+                isEdittingContribution ? (
+                  <>
+                  <CustomButton
+                      name="orange"
+                      size="small"
+                      addedClass="white w-100 mb-24"
+
+                      onClick={() => {
+                        navigate(`/project/edit/${projectDetail._id}`);
+                      }}
+                    >
+                      Edit Project
+                  </CustomButton>
+                  <div className="contribution-form">
+                    <Form
+                        layout="vertical"
+                        form={form}
+                        // initialValues={{ remember: true }}
+                        id="criteria-list-form"
+                        onFinish={onFinish}
+                        onFinishFailed={onFinishFailed}
+                        autoComplete="off"
+                        initialValues={{
+                          ["contribution"]: projectDetail.contribution,
+                        }}
+                      >
+                        <Form.Item
+                        name="contribution"
+                        label={<p className="text-16 bold">Describe your contribution</p>}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Can't be blank!",
+                          },
+                        ]}
+                      >
+                        <TextArea rows={6} onChange={onChangeContribution} placeholder="Ex: I worked on the back-end. It was my first time using Node, which was a little intimidating, but I learned a lot."/>
+                      </Form.Item>
+                      <Space className="mt-16">
+                        <CustomButton
+                          type="submit"
+                          name="orange"
+                          size="small"
+                          addedClass="white"
+                        
+                        >
+                          Save 
+                        </CustomButton>
+                        <CustomButton
+                          type="button"
+                          name="outlined"
+                          size="small"
+                          addedClass="info"
+                          style={{borderRadius: "4px"}}
+                          onClick={() => {
+                            setIsEditingContribution(false);
+                          }}
+                        >
+                          Cancel
+                        </CustomButton>
+                      </Space>
+                    </Form>
+                  </div>
+                </>
+              ) : (
+                <div className="charity-content bg-white">
+                <p className="bold">{projectDetail.contribution}</p>
+                <button
+                      className="cursor"
+                      onClick={() => {
+                        setIsEditingContribution(true);
+                      }}
+                    >
+                      Edit Project
+                </button>
+              </div>
+              )
+                
+              )
+            }
+            <h1 className="text-28 mb-24">CREATED BY</h1>
             <Space className="a-start mb-24">
               <Avatar
                 style={{ backgroundColor: "#ddd", width: 70, height: 70 }}
-                src={userInfo.img}
+                src={projectDetail.creator.img}
               />
               <Space>
-                <NavLink to={`/portfolio/${userInfo.name}`}>
-                  {userInfo.name}
+                <NavLink to={`/portfolio/${projectDetail.creator.name}`}>
+                  {projectDetail.creator.name}
                 </NavLink>
 
                 {
@@ -145,6 +284,21 @@ const ProjectDetailMain = ({ projectDetail }) => {
                 }
               </Space>
             </Space>
+            {
+              isMyProject && (
+                <div className="additional-actions-wrapper f f-column bg-white">
+                    <Button className="f a-center" style = {{gap: '10px'}}>
+                      <AiFillEye/>
+                      <span>Hide project in my portfolio</span>
+                    </Button>
+                    <Button className="f a-center error" style = {{gap: '10px'}}>
+                      <BsFillTrashFill className="error"/>
+                      <span> Delete project</span>
+                    </Button>
+                </div>
+              )
+            }
+
           </Col>
         </Row>
       </div>

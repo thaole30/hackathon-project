@@ -1,5 +1,6 @@
 import * as types from "./appActionTypes";
 
+//DRAWERRRRR
 
 export const openDrawer = () => {
     return {
@@ -9,6 +10,8 @@ export const openDrawer = () => {
 export const closeDrawer = () => ({
     type: types.CLOSE_DRAWER
 })
+
+//PROJECTTTT
 
 export const searchProjectsByKeyword = (keyword) => ({
     type: types.SEARCH_PROJECTS_BY_KEYWORD,
@@ -36,6 +39,20 @@ export const failFetchProjectDetail = () => ({
 })
 
 
+export const startFetchAllProjects = () => ({
+    type: types.START_FETCH_ALL_PROJECTS,
+})
+export const successFetchAllProjects = (projects) => ({
+    type: types.SUCCESS_FETCH_ALL_PROJECTS,
+    payload: projects,
+})
+export const failFetchAllProjects = () => ({
+    type: types.FAIL_FETCH_ALL_PROJECTS,
+})
+
+//LOADINGGGG
+
+
 export const showLoading = () => ({
     type: types.SHOW_LOADING,
 })
@@ -43,6 +60,8 @@ export const showLoading = () => ({
 export const hideLoading = () => ({
     type: types.HIDE_LOADING,
 })
+
+// AUTHHHHHHHHHHH
 
 export const logOut = () => ({
     type: types.LOG_OUT,

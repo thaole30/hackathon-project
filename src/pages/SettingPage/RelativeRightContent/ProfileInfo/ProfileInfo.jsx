@@ -11,6 +11,7 @@ import { uploadFile } from "../../../../api/upload";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getUserApi, updateUserApi } from "../../../../api/auth";
 import { normalUpdate } from "../../../../redux/userSlice";
+import { showMessage } from "../../../../utils/showMessage";
 
 const uploadImgFile = async (imgFile) => {
   const imgRes = await uploadFile(imgFile);

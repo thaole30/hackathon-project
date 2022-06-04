@@ -30,10 +30,26 @@
         }
     }
 
+    .contribution-form {
+        background-color: $white-color;
+        padding: 20px;
+    }
+
     .project-detail-comments-section {
         button.edit-comment-btn {
             background-color: transparent !important;
             border: none !important;
+        }
+    }
+
+    .charity-content {
+        padding: 10px;
+        button {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            color: $orange-main;
+            font-size: 14px;
         }
     }
     .switch-btn {
@@ -51,5 +67,15 @@
                 display: block;
             }
         }
+    }
+
+    .additional-actions-wrapper {
+        padding: 10px;
+        button {
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+        box-shadow: 0 12px 45px rgba(8, 10, 37, 0.04);
     }
 }

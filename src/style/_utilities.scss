@@ -487,7 +487,13 @@
   @include textStyle($poppins, normal, 48px, $text-dark, 600, null, null);
 }
 
+.bg-white {
+  background-color: $white-color;
+}
 
+.bg-trans {
+  background-color: transparent;
+}
 
 .content h1 {
   @include textStyle($poppins, normal, 64px, $text-dark, 600, null, null);

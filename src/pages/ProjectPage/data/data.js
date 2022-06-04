@@ -11,7 +11,7 @@ export const projects = [
         likes: 2,
         comments: 5,
         tags: ["Nxt3"],
-        categories: ['Currently Hiring'],
+        categories: 'Currently Hiring',
     },
     {
         id: 2,
@@ -24,7 +24,7 @@ export const projects = [
         likes: 5,
         comments: 15,
         tags: ["Javascript"],
-        categories: ['Currently Fundraising'],
+        categories: 'Currently Fundraising',
 
     },
     {
@@ -38,7 +38,7 @@ export const projects = [
         likes: 3,
         comments: 6,
         tags: ['React Native'],
-        categories: ['Project Showcase'],
+        categories: 'Project Showcase',
 
     },
     {
@@ -52,7 +52,7 @@ export const projects = [
         likes: 5,
         comments: 15,
         tags: ['Python'],
-        categories: ['Project available for Sale'],
+        categories: 'Project available for Sale',
 
     },
     {
@@ -66,7 +66,7 @@ export const projects = [
         likes: 10,
         comments: 12,
         tags: ["NodeJs"],
-        categories: ['Currently Hiring'],
+        categories: 'Currently Hiring',
 
     },
 ]

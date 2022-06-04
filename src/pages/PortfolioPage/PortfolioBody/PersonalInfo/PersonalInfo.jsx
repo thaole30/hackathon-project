@@ -33,7 +33,7 @@ const PersonalInfo = () => {
     console.log('Success:', values);
     showMessage("success", "Submit success!");
     setIsOpenModal(false);
-    createNewProject(values);
+    createNewProject({...values, creatorName: userInfo.name});
 
   };
 

@@ -5,9 +5,14 @@ import { Row, Col } from 'antd';
 import CategoryCard from './CategoryCard';
 import ProjectCard from './ProjectCard';
 import { AppContext } from './../../../contexts/appContext/appContext';
-import { searchProjectsByKeyword } from '../../../contexts/appContext/appActions';
+import { searchProjectsByKeyword, successFetchAllProjects } from '../../../contexts/appContext/appActions';
 import { useNavigate } from 'react-router-dom';
 import EmptyData from '../../../components/EmptyData/EmptyData';
+import { publicRequest } from '../../../api';
+import { getAllProjects } from '../../../api/project';
+import SpinLoading from './../../../components/SpinLoading/SpinLoading';
+import { useMutation, useQuery, useQueryClient } from "react-query";
+
 
 const ProjectsList = () => {
 
@@ -17,6 +22,13 @@ const ProjectsList = () => {
     const [valueSearch, setValueSearch] = useState("");
     let navigate = useNavigate();
 
+    const getProjects = async () => {
+        const {data: projects} = await getAllProjects();
+        console.log("projects fetched", projects);
+        dispatch(successFetchAllProjects(projects));
+        return projects;
+    };
+      const { data , isFetching, isLoading } = useQuery("get-projects", getProjects, {initialData: []});
 
     const handleChangeInputSearch = (e) => {
         setValueSearch(e.target.value);
@@ -29,6 +41,13 @@ const ProjectsList = () => {
         navigate(`/software?search=${valueSearch}&category=${appContext.selectedCategory}`)
     }
 
+    console.log("isLoading projects", isFetching);
+
+
+
+    if(isFetching) {
+        return <SpinLoading/>
+    }
 
   return (
     <div className="projects-list">

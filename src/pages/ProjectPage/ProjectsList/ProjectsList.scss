@@ -39,6 +39,14 @@
                     color: rgba(8,10,37,.8);
                     margin-bottom: 8px;
                 }
+                &.active {
+                    background: $white-color;
+                    box-shadow: 0 12px 12px rgba(0, 0, 0, 0.1);
+                    border-radius: 8px;
+                    font-weight: 500;
+                    color: rgba(8,10,37,.8);
+                    margin-bottom: 8px;
+                }
 
                 p {
                     text-align: left;

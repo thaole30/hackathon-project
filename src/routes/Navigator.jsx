@@ -39,10 +39,10 @@ import UpdateHkt from '../pages/ManageHackathon/ChildPage/UpdateHkt/UpdateHkt';
 import DiscussionHkt from '../pages/ManageHackathon/ChildPage/DiscussionHkt/DiscussionHkt';
 
 const Navigator = ({ appContext }) => {
-  const queryClient = new QueryClient();
+  
 
   return (
-    <QueryClientProvider client={queryClient}>
+    
       <BrowserRouter>
           <ToastContainer />
           {/* <ProgressLoading/> */}
@@ -98,7 +98,7 @@ const Navigator = ({ appContext }) => {
           
 
       </BrowserRouter>
-    </QueryClientProvider>
+
   )
 }
 

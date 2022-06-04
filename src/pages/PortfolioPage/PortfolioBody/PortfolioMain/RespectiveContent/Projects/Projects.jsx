@@ -2,10 +2,21 @@ import React from 'react';
 import { Row, Col } from 'antd';
 import { useSelector } from 'react-redux';
 import MyProjectCard from './MyProjectCard';
-import { myProjects } from './data';
+// import { myProjects } from './data';
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { getUserProjectsApi } from '../../../../../../api/project';
+
 
 const Projects = () => {
   const { userInfo } = useSelector((state) => state.user);
+
+  const getProjects = async () => {
+    const {data: projects} = await getUserProjectsApi();
+    console.log("projects fetched", projects);
+    return projects;
+};
+  const { data: myProjects , isFetching, isLoading } = useQuery("get-projects", getProjects, {initialData: []});
+  
 
   return (
     <div className="projects">
