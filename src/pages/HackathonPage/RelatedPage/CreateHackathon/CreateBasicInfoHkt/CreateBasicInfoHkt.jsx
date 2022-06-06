@@ -7,6 +7,7 @@ import moment from "moment";
 import { useDispatch } from "react-redux";
 import { createHktDraft } from "../../../../../redux/hackathonSlice";
 import { nanoid } from "nanoid";
+import { createHackathonApi } from "../../../../../api/hackathon";
 
 const CreateBasicInfoHkt = () => {
   const navigate = useNavigate();
@@ -16,14 +17,30 @@ const CreateBasicInfoHkt = () => {
 
   function onChange(date, dateString) {
     console.log(date, dateString);
+  //   form.setFieldsValue({
+  //     ["startDate"]: dateString,
+  // });
   }
+
+  
+  const createNewHackathon = async (data) => {
+    const {data: newHackathon} = await createHackathonApi(data);
+    console.log("newHackathon", newHackathon);
+    // dispatch(createHktDraft(newHackathon));
+    navigate(`/hackathon/manage/${newHackathon._id}/edit`);
+    showMessage("success", "hkt draft created successfully");
+
+  }
+
 
   const onFinish = (values) => {
     console.log("Success values", values);
-    const hackathonId = nanoid();
-    dispatch(createHktDraft({ ...values, type: "draft", id: hackathonId, img: "https://crowdhack.io/static/media/bitcoin-banner.d314b6a6.png" }));
-    navigate(`/hackathon/manage/${hackathonId}/edit`);
-    showMessage("success", "hkt draft created successfully");
+
+    // console.log("string date", moment(values.startDate).format("MM/DD/YYYY"))
+ 
+    // const hackathonId = nanoid();
+    createNewHackathon({...values, startDate: moment(values.startDate).format("MM/DD/YYYY")});
+   
   };
 
   const onFinishFailed = () => {};
@@ -53,7 +70,7 @@ const CreateBasicInfoHkt = () => {
           <Input size="large" />
         </Form.Item>
         <Form.Item
-          name="hktSubmissionDate"
+          name="startDate"
           label={
             <p className="text-20 bold">
               When does your hackathon submission period begin?
@@ -73,6 +90,7 @@ const CreateBasicInfoHkt = () => {
             className="datepicker-hkt"
             // onChange={onChange}
             placeholder="mm/dd/yyyy"
+            onChange={onChange}
             // defaultValue={moment("01/10/2015", "MM/DD/YYYY")}
             format={"MM/DD/YYYY"}
           />

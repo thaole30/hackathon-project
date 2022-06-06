@@ -9,7 +9,7 @@ import UploadPhoto from './UploadPhoto';
 import "./ProfileInfo.scss";
 import { uploadFile } from "../../../../api/upload";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { getUserApi, updateUserApi } from "../../../../api/auth";
+import { getUserLoginApi, updateUserApi } from "../../../../api/auth";
 import { normalUpdate } from "../../../../redux/userSlice";
 import { showMessage } from "../../../../utils/showMessage";
 
@@ -33,7 +33,7 @@ const ProfileInfo = () => {
 
   const getInfo = async () => {
     console.log("go to getInfooooooooooo");
-    return getUserApi()
+    return getUserLoginApi()
       .then((res) => {
         const { password, ...data } = res.data;
         console.log("go to getInfooooooooooo data", data);

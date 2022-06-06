@@ -4,14 +4,14 @@ import RespectiveContent from './RespectiveContent/RespectiveContent'
 import "./PortfolioMain.scss";
 
 
-const PortfolioMain = () => {
+const PortfolioMain = ({userInfo}) => {
 
     const [activeTab, setActiveTab] = useState("projects");
 
   return (
     <div className="portfolio-main">
-        <PortfolioTab activeTab={activeTab} selectActiveTab={(selectedTab) => setActiveTab(selectedTab)}/>
-        <RespectiveContent activeTab={activeTab}/>
+        <PortfolioTab userInfo={userInfo} activeTab={activeTab} selectActiveTab={(selectedTab) => setActiveTab(selectedTab)}/>
+        <RespectiveContent userInfo={userInfo} activeTab={activeTab}/>
     </div>
   )
 }

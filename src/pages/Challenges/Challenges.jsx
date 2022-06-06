@@ -1,21 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Outlet, useNavigate, useParams } from "react-router-dom";
+import { NavLink, Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import ProgressLoading from "../../components/ProgressLoading/ProgressLoading";
 import SpinLoading from "../../components/SpinLoading/SpinLoading";
 import { fetchHackathonDetail } from "../../redux/hackathonSlice";
 import { Tabs } from "antd";
 import "./Challenges.scss";
+import { useHackathonByIdQuery } from "../../query/useHackathonQuery";
 
 const { TabPane } = Tabs;
 
+  const hackathonDetail  =    {
+    img: "https://tedu.com.vn/uploaded/images/path/102020/nodejs.png",
+    _id: 1,
+    prize: 1500,
+    title: "Learn Nodejs",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit pariatur magni voluptas rerum facilis magnam, ratione corporis laboriosam, nihil blanditiis nemo delectus eum voluptatem, corrupti quam quidem recusandae dolorum at!",
+    gmail: "mnq@gmail.com",
+    owner: "Apple",
+    address: "USA",
+    time: "8:30",
+    date: "Feb 15, 2022",
+    tags: ["Web", "Productivity","Music"],
+    status: "ongoing"
+}
+
 
 const Challenges = () => {
-  const { isLoading, hackathonDetail } = useSelector(
-    (state) => state.hackathon
-  );
-  console.log("hackathonDetail", hackathonDetail);
+  // const { isLoading, hackathonDetail } = useSelector(
+  //   (state) => state.hackathon
+  // );
+
+  const [activeTab, setActiveTab] = useState("projects")
+
+  // console.log("hackathonDetail", hackathonDetail);
   const { hackathonId } = useParams();
+  const {pathname} = useLocation();
+  console.log("pathname", pathname);
 
   const dispatch = useDispatch();
 
@@ -24,6 +45,14 @@ const Challenges = () => {
       dispatch(fetchHackathonDetail(hackathonId));
     }
   }, [hackathonId]);
+
+
+  useEffect(() => { 
+    setActiveTab(pathname.split('/')[2]);
+  }, [pathname])
+
+  const {data: projectDetailInfo, isFetching, isLoading} = useHackathonByIdQuery(hackathonId);
+  console.log("project detail data", projectDetailInfo)
 
   if (isLoading) {
     return (
@@ -38,6 +67,8 @@ const Challenges = () => {
     // selectActiveTab(key);
     console.log("key", key);
   }
+
+
 
 
   return (
@@ -58,7 +89,8 @@ const Challenges = () => {
         <div className="container">
           <Tabs
             className="challenges-tab"
-            defaultActiveKey="projects"
+            // defaultActiveKey="projects"
+            activeKey={activeTab}
             onChange={handleChangeTab}
           >
             <TabPane
@@ -109,7 +141,7 @@ const Challenges = () => {
       </div>
 
       <div className="challenges-main-content container">
-        <Outlet />
+        <Outlet context={[projectDetailInfo]}/>
       </div>
     </div>
   );

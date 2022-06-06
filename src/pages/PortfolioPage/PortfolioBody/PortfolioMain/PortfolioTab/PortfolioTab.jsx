@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 const { TabPane } = Tabs;
 
-const PortfolioTab = ({ activeTab, selectActiveTab }) => {
+const PortfolioTab = ({ activeTab, selectActiveTab, userInfo }) => {
 
 
   function callback(key) {
@@ -21,13 +21,13 @@ const PortfolioTab = ({ activeTab, selectActiveTab }) => {
           onChange={callback}
         >
           <TabPane
-            tab={<HeaderTab title="Projects" count="1" />}
+            tab={<HeaderTab title="Projects" count={userInfo?.projectIds?.length} />}
             key="projects"
           >
             {/* Content of Tab Pane 1 */}
           </TabPane>
           <TabPane
-            tab={<HeaderTab title="Hackathon" count="3" />}
+            tab={<HeaderTab title="Hackathon" count={userInfo?.myHackathons?.length} />}
             key="hackathon"
           >
             {/* Content of Tab Pane 2 */}

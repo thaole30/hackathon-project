@@ -1,6 +1,8 @@
 @import "../../style/style.scss";
 
 .challenges-page {
+    background-color: $white-color;
+
     .challenge-banner {
         background-color: $white-color;
         img {
@@ -53,42 +55,51 @@
         margin-bottom: 56px;
 
         .overview-section {
-            ul.participate-rules {
-                list-style: disc;
-                padding-left: 25px;
-                
-                li {
-                    &::marker {
-                        color: blue;
-                        font-size: 2em;
+            border: 1px solid rgba(8,10,37,.16);
+            border-radius: 12px;
+            .overview-content-left {
+                padding: 42px;
+                ul.participate-rules {
+                    list-style: disc;
+                    padding-left: 25px;
+                    
+                    li {
+                        &::marker {
+                            color: blue;
+                            font-size: 2em;
+                        }
+                    }
+                }
+                .find-more-hkt-btn {
+                    background: #303efc;
+                    color: $text-light;
+                    border-color: transparent;
+                }
+            }
+          
+            .overview-content-right {
+                padding: 20px;
+                .overview-card {
+                    padding: 17.5px 18px;
+                    border-radius: 4px;
+    
+                    &.time-card {
+                        background-color: #303efc;
+                        color: $white-color;
+                    }
+        
+                    &.hackathon-detail-card {
+                        margin: 12px 0;
+                        background-color: $white-color;
+                    }
+    
+                    &.tags-card {
+                        margin: 12px 0;
+                        background-color: $white-color;
                     }
                 }
             }
-            .find-more-hkt-btn {
-                background: #303efc;
-                color: $text-light;
-                border-color: transparent;
-            }
 
-            .overview-card {
-                padding: 17.5px 18px;
-                border-radius: 4px;
-
-                &.time-card {
-                    background-color: #303efc;
-                    color: $white-color;
-                }
-    
-                &.hackathon-detail-card {
-                    margin: 12px 0;
-                    background-color: $white-color;
-                }
-
-                &.tags-card {
-                    margin: 12px 0;
-                    background-color: $white-color;
-                }
-            }
 
         }
 

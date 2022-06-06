@@ -6,16 +6,17 @@ import { fetchHackathonDetail } from '../../redux/hackathonSlice';
 import MainTab from './MainTab/MainTab';
 import ManageHackathonBanner from './ManageHackathonBanner/ManageHackathonBanner';
 import "./ManageHackathon.scss";
+import { useHackathonByIdQuery } from '../../query/useHackathonQuery';
 
 
 
 const ManageHackathon = () => {
 
 const { hackathonId } = useParams();
-const { isLoading, hackathonDetail } = useSelector(
-    (state) => state.hackathon
-  );
-  console.log("hackathonDetail", hackathonDetail);
+// const { isLoading, hackathonDetail } = useSelector(
+//     (state) => state.hackathon
+//   );
+//   console.log("hackathonDetail", hackathonDetail);
 
   
   const location = useLocation();
@@ -25,6 +26,9 @@ const { isLoading, hackathonDetail } = useSelector(
   const [currentTab, setcurrentTab] = useState("");
   console.log("currentTab", currentTab);
   // console.log("location", location)
+
+
+  const {data :hackathonDetail, isFetching, isLoading } = useHackathonByIdQuery(hackathonId);
 
 
   useEffect(() => {
@@ -49,10 +53,17 @@ const { isLoading, hackathonDetail } = useSelector(
     );
   }
 
+
+
   return (
     <div className="manage-hackathon-page">
         <ManageHackathonBanner/>
         <MainTab hackathonId={hackathonId} currentTab={currentTab}/>
+        <div className="container">
+          <div className="tab-divider">
+
+          </div>
+        </div>
         <div className="manage-hackathon-content">
           <Outlet context={[hackathonDetail]}/>
           

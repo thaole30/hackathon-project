@@ -249,7 +249,18 @@ const ProjectDetailMain = ({ projectDetail, mutationUpdateProject }) => {
                 src={projectDetail.creator.img}
               />
               <Space>
-                <NavLink to={`/portfolio/${projectDetail.creator.name}`}>
+                <NavLink
+                //  to={{
+                //   pathname:`/portfolio/${projectDetail.creator.name}`,
+                //   state:{
+                //         userId: projectDetail.creator._id
+                //        }
+                //   }}
+                // to={`/portfolio/${projectDetail.creator.name}`}
+                // key={"portfolioRoute"}
+                to={`/portfolio/${projectDetail.creator.name}`}
+                state={{ userId: projectDetail.creator._id }}
+                >
                   {projectDetail.creator.name}
                 </NavLink>
 

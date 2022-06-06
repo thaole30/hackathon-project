@@ -1,8 +1,8 @@
 import React from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useOutletContext, useParams } from "react-router-dom";
 import { Row, Col, Button, Space, Tag } from 'antd';
 import { useSelector } from "react-redux";
-import MyDivider from "../../components/MyDivider/MyDivider";
+import MyDivider from "../../../components/MyDivider/MyDivider";
 import {
   CalendarOutlined,
   FlagOutlined
@@ -13,10 +13,28 @@ const Overview = () => {
   // const {hackathonId} = useParams();
 
   // console.log("hackathonId in Overview", hackathonId);
-  const { hackathonDetail } = useSelector((state) => state.hackathon);
-  console.log("hackathonDetail in overview", hackathonDetail);
+  // const { hackathonDetail } = useSelector((state) => state.hackathon);
+  // console.log("hackathonDetail in overview", hackathonDetail);
+
+  const [projectDetailInfo] = useOutletContext();
+  console.log("projectDetailInfo", projectDetailInfo);
+
   const navigate = useNavigate();
 
+  const hackathonDetail  =    {
+    img: "https://tedu.com.vn/uploaded/images/path/102020/nodejs.png",
+    _id: 1,
+    prize: 1500,
+    title: "Learn Nodejs",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit pariatur magni voluptas rerum facilis magnam, ratione corporis laboriosam, nihil blanditiis nemo delectus eum voluptatem, corrupti quam quidem recusandae dolorum at!",
+    gmail: "mnq@gmail.com",
+    owner: "Apple",
+    address: "USA",
+    time: "8:30",
+    date: "Feb 15, 2022",
+    tags: ["Web", "Productivity","Music"],
+    status: "ongoing"
+}
 
   return <div className="overview-section">
         <Row gutter={[16,16]}>
@@ -31,7 +49,7 @@ const Overview = () => {
             </ul>
 
             <div className="link-wrapper mt-24 mb-24">
-              <NavLink to={`/challenges/my-project/${hackathonDetail.id}`}>View all rules</NavLink>
+              <NavLink to={`/challenges/rules/${hackathonDetail._id}`}>View all rules</NavLink>
             </div>
 
             <div className="w-100 text-center">

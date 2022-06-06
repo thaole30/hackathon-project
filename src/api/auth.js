@@ -11,8 +11,12 @@ export const signUpApi = (formData) => {
 
 
 
-export const getUserApi = () => {
-    return userRequest().get(`/users`);
+export const getUserLoginApi = () => {
+    return userRequest().get(`/users/getLoginUser`);
+}
+
+export const getUserByUsernameApi = (userName) => {
+    return publicRequest.get(`/users/getUserByUsername/${userName}`);
 }
 
 

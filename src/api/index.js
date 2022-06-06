@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const BASE_URL = "http://localhost:7000";
-// const BASE_URL = "https://hkt-project.herokuapp.com";
+// const BASE_URL = "http://localhost:7000";
+const BASE_URL = "https://hkt-project.herokuapp.com";
 let TOKEN = "";
 
 if(localStorage.getItem('profile')) {
@@ -21,7 +21,7 @@ export const publicRequest = axios.create({
   const getAxios = () => {
     return axios.create({
       baseURL: BASE_URL,
-      timeout: 10000,
+      timeout: 30000,
       headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}` },
     });
   }

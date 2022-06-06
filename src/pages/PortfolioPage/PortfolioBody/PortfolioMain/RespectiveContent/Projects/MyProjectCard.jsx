@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import IconButton from './../../../../../../components/IconButton/IconButton';
 
 
-const MyProjectCard = ({project}) => {
+const MyProjectCard = ({project, imgUser}) => {
   return (
     <NavLink to={`/project/${project._id}`} className="w-100 h-100 my-project-card-link">
         <div className="my-project-card w-100 h-100 f f-column">
@@ -39,7 +39,7 @@ const MyProjectCard = ({project}) => {
                   </Space>
                 </Space>
                 <div className="creator-avatar">
-                  <Avatar src="https://joeschmoe.io/api/v1/random" />
+                  <Avatar src={imgUser} />
                 </div>
             </div>
         </div>

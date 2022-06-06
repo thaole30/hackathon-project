@@ -9,7 +9,7 @@ export const mytags = [
 export const hackathons = [
     {
         img: "https://tedu.com.vn/uploaded/images/path/102020/nodejs.png",
-        id: 1,
+        _id: 1,
         prize: 1500,
         title: "Learn Nodejs",
         desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit pariatur magni voluptas rerum facilis magnam, ratione corporis laboriosam, nihil blanditiis nemo delectus eum voluptatem, corrupti quam quidem recusandae dolorum at!",
@@ -23,7 +23,7 @@ export const hackathons = [
     },
     {
         img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp9RGd434liYnVi09-XSUY6JsY6-hrpCrinkf8qyZCy1W0o2RldnB0jLXB8WRZV0yv6E0&usqp=CAU",
-        id: 2,
+        _id: 2,
         prize: 1760,
         title: "Learn Blockchain",
         desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit pariatur magni voluptas rerum facilis magnam, ratione corporis laboriosam, nihil blanditiis nemo delectus eum voluptatem, corrupti quam quidem recusandae dolorum at!",
@@ -37,7 +37,7 @@ export const hackathons = [
     },
     {
         img: "https://tuhoclaptrinh.edu.vn/upload/post/15/92/98/tim-hieu-ve-ngon-ngu-lap-trinh-php-893261.jpg",
-        id: 3,
+        _id: 3,
         prize: 1450,
         title: "Learn PHP",
         desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit pariatur magni voluptas rerum facilis magnam, ratione corporis laboriosam, nihil blanditiis nemo delectus eum voluptatem, corrupti quam quidem recusandae dolorum at!",
@@ -51,7 +51,7 @@ export const hackathons = [
     },
     {
         img: "https://yt3.ggpht.com/WL68kHeTb7tlpYQS-3kl_qLsvhzNa1PVkEO48o_xEY8Inlx9g7Lb-9ONAlGB8zI6R5qwQXDd=s900-c-k-c0x00ffffff-no-rj",
-        id: 4,
+        _id: 4,
         prize: 2000,
         title: "Relax gaming",
         desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit pariatur magni voluptas rerum facilis magnam, ratione corporis laboriosam, nihil blanditiis nemo delectus eum voluptatem, corrupti quam quidem recusandae dolorum at!",
@@ -65,7 +65,7 @@ export const hackathons = [
     },
     {
         img: "https://crowdhack.io/api/upload/get_file/Square-d413.png",
-        id: 5,
+        _id: 5,
         prize: 1250,
         title: "Design the next Web 3.0 App",
         desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit pariatur magni voluptas rerum facilis magnam, ratione corporis laboriosam, nihil blanditiis nemo delectus eum voluptatem, corrupti quam quidem recusandae dolorum at!",
@@ -79,7 +79,7 @@ export const hackathons = [
     },
     {
         img: "	https://crowdhack.io/api/upload/get_file/Screenshot%202022-01-31%20230559-1106c.png",
-        id: 6,
+        _id: 6,
         prize: 100000,
         title: "Web Discovery",
         desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit pariatur magni voluptas rerum facilis magnam, ratione corporis laboriosam, nihil blanditiis nemo delectus eum voluptatem, corrupti quam quidem recusandae dolorum at!",
@@ -93,7 +93,7 @@ export const hackathons = [
     },
     {
         img: "https://mona.media/wp-content/uploads/2021/07/css.png",
-        id: 7,
+        _id: 7,
         prize: 1000,
         title: "How to style a website with CSS",
         desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit pariatur magni voluptas rerum facilis magnam, ratione corporis laboriosam, nihil blanditiis nemo delectus eum voluptatem, corrupti quam quidem recusandae dolorum at!",
@@ -110,7 +110,7 @@ export const hackathons = [
 export const myHackathons = [
     {
         img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp9RGd434liYnVi09-XSUY6JsY6-hrpCrinkf8qyZCy1W0o2RldnB0jLXB8WRZV0yv6E0&usqp=CAU",
-        id: 1,
+        _id: 1,
         key: 1,
         prize: 1760,
         title: "Learn Blockchain",
@@ -129,7 +129,7 @@ export const myHackathons = [
     },
     {
         img: "https://yt3.ggpht.com/WL68kHeTb7tlpYQS-3kl_qLsvhzNa1PVkEO48o_xEY8Inlx9g7Lb-9ONAlGB8zI6R5qwQXDd=s900-c-k-c0x00ffffff-no-rj",
-        id: 4,
+        _id: 4,
         key: 2,
         prize: 2000,
         title: "Relax gaming",

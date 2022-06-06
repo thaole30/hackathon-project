@@ -1,4 +1,4 @@
-import { Input, Space, Tag } from 'antd'
+import { Input, Space, Tag, Tooltip } from 'antd'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import CustomButton from '../../../components/CustomButton/CustomButton'
@@ -13,10 +13,12 @@ const ManageHackathonBanner = () => {
             </Space>
             <Space>
                 <NavLink to="/">
-                    <CustomButton size="middle" name="secondary">Preview draft site</CustomButton>
+                <Tooltip placement="top" title={"You have to input all information of Essential section before preview the draft site."}>
+                    <CustomButton size="middle" name="secondary" addedClass="cursor-notAllowed">Preview draft site</CustomButton>
+                </Tooltip>
                 </NavLink>
                 <NavLink to="/">
-                    <CustomButton size="middle" name="secondary">Publish</CustomButton>
+                    <CustomButton size="middle" name="secondary" addedClass="cursor-notAllowed">Publish</CustomButton>
                 </NavLink>
             </Space>
         </div>

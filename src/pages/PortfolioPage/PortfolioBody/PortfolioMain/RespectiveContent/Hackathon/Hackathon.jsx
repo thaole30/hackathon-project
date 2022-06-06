@@ -3,15 +3,15 @@ import React from 'react';
 import { myHackathons } from '../../../../../HackathonPage/data/data';
 import MyHackathonCard from './MyHackathonCard';
 
-const Hackathon = () => {
+const Hackathon = ({userData}) => {
   return (
     <div className="hackathon">
       <div className="container">
         <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
           {
-            myHackathons.map((item, index) => {
+            userData?.myHackathons?.map((item, index) => {
               return (
-                <MyHackathonCard key={item.id} item={item}/>
+                <MyHackathonCard key={item._id} creatorName={userData.name} item={item}/>
               )
             })
           }

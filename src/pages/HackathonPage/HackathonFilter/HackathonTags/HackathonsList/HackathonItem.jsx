@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const HackathonItem = ({item}) => {
   return (
     <Col xs={24} md={12} lg={8}>
-    <NavLink to={`/challenges/overview/${item.id}`} className="hackathon-item">
+    <NavLink to={`/challenges/overview/${item._id}`} className="hackathon-item">
       <div className="hackathon-card">
         <img
           className="mb-20 card-img"

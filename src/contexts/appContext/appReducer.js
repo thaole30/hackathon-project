@@ -1,5 +1,5 @@
 import { projects } from "../../pages/ProjectPage/data/data";
-import { CLOSE_DRAWER, FAIL_FETCH_PROJECT_DETAIL, OPEN_DRAWER, SEARCH_PROJECTS_BY_CATEGORY, SEARCH_PROJECTS_BY_KEYWORD, SEARCH_PROJECTS_BY_TAG, START_FETCH_PROJECT_DETAIL, SUCCESS_FETCH_ALL_PROJECTS, SUCCESS_FETCH_PROJECT_DETAIL } from "./appActionTypes";
+import { CLOSE_DRAWER, FAIL_FETCH_PROJECT_DETAIL, OPEN_DRAWER, SEARCH_PROJECTS_BY_CATEGORY, SEARCH_PROJECTS_BY_KEYWORD, SEARCH_PROJECTS_BY_TAG, START_FETCH_PROJECT_DETAIL, SUCCESS_FETCH_ALL_PROJECTS, SUCCESS_FETCH_PROJECT_DETAIL, GET_USER_DETAIL } from "./appActionTypes";
 
 const appReducer = (state, action) => {
     switch (action.type) {
@@ -94,6 +94,13 @@ const appReducer = (state, action) => {
                 ...state,
                 isLoading: false,
                 isError: true,
+            }
+        }
+
+        case GET_USER_DETAIL: {
+            return {
+                ...state,
+                userInfo: action.payload,
             }
         }
 

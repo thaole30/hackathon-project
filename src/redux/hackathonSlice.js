@@ -8,13 +8,14 @@ export const fetchHackathonDetail = createAsyncThunk(
   "hackathon/fetchHackathonDetail",
   async (hackathonId, thunkApi) => {
     const {hackathon} = thunkApi.getState();
-    console.log("hackathonsArr", hackathon.hackathonsArr)
+    // console.log("hackathonsArr", hackathon.hackathonsArr)
     const hackathonDetail = await new Promise((res, rej) => {
-      const hktDetail = hackathon.hackathonsArr.find((item) => item.id == hackathonId);
+      const hktDetail = hackathon.hackathonsArr.find((item) => item._id == hackathonId);
       setTimeout(() => {
         res(hktDetail);
       }, 2000);
     });
+    // console.log("hackathonDetail reducer", hackathonDetail)
     return hackathonDetail; //action.payload
   }
 );
@@ -51,7 +52,7 @@ export const hackathonSlice = createSlice({
         state.isError = false;
       })
       .addCase(fetchHackathonDetail.fulfilled, (state, action) => {
-        // console.log("hackathonDetail payload fulfilled", action.payload);
+        console.log("hackathonDetail payload fulfilled", action.payload);
         state.hackathonDetail = action.payload;
         state.isLoading = false;
         state.isError = false;

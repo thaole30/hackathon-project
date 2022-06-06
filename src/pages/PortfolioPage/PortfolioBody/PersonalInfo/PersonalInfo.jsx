@@ -10,8 +10,8 @@ import { showMessage } from "../../../../utils/showMessage";
 import uuid from 'react-uuid';
 import { createProjectApi } from "../../../../api/project";
 
-const PersonalInfo = () => {
-  const { userInfo } = useSelector((state) => state.user);
+const PersonalInfo = ({userInfo}) => {
+  // const { userInfo } = useSelector((state) => state.user);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [projectType, setProjectType] = useState("");
 
@@ -33,7 +33,7 @@ const PersonalInfo = () => {
     console.log('Success:', values);
     showMessage("success", "Submit success!");
     setIsOpenModal(false);
-    createNewProject({...values, creatorName: userInfo.name});
+    createNewProject({...values, creatorName: userInfo?.name});
 
   };
 
@@ -70,7 +70,7 @@ const PersonalInfo = () => {
             <Col xs={24} lg={5}>
               <div className="f f-column a-center">
                 <div className="avatar-container relative">
-                  <Avatar className="avatar" src={userInfo.img} />
+                  <Avatar className="avatar" src={userInfo?.img} />
                   <div className="avatar-badge">
                     <NavLink
                       to="/settings"

@@ -77,3 +77,8 @@ export const signUp = (userInfo) => ({
     type: types.SIGN_UP,
     payload: userInfo,
 })
+
+export const getUserDetail = (userInfo) => ({
+    type: types.GET_USER_DETAIL,
+    payload: userInfo,
+})

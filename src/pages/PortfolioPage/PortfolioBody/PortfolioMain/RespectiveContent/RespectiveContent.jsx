@@ -11,15 +11,16 @@ import "./RespectiveContent.scss";
 const { TabPane } = Tabs;
 
 
-const RespectiveContent = ({activeTab}) => {
+const RespectiveContent = ({activeTab, userInfo}) => {
+  // console.log("userInfo123", userInfo)
 
   const renderRespectiveContent = useCallback(() => {
     switch (activeTab) {
       case "projects": {
-        return <Projects/>
+        return <Projects userData={userInfo}/>
       }
       case "hackathon": {
-        return <Hackathon/>
+        return <Hackathon userData={userInfo}/>
       }
       case "followers": {
         return <Followers/>
@@ -34,7 +35,7 @@ const RespectiveContent = ({activeTab}) => {
         break;
     }
 
-  }, [activeTab])
+  }, [activeTab, userInfo])
   
   // const renderRespectiveContent = () => {
   //   switch (activeTab) {

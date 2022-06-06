@@ -21,7 +21,7 @@ import PortfolioPage from '../pages/PortfolioPage/PortfolioPage';
 import ProjectPage from '../pages/ProjectPage/ProjectPage';
 import SettingPage from '../pages/SettingPage/SettingPage';
 import Challenges from '../pages/Challenges/Challenges';
-import Overview from '../pages/Challenges/Overview';
+import Overview from '../pages/Challenges/Overview/Overview';
 import MyProjects from '../pages/Challenges/MyProjects';
 import Participants from '../pages/Challenges/Participants';
 import Rules from '../pages/Challenges/Rules';
