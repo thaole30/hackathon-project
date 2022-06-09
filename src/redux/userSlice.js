@@ -77,6 +77,15 @@ export const userSlice = createSlice({
       showMessage("success", "All info has been saved");
 
     },
+    loginWithGoogle: (state, action) => {
+      console.log("userInfo updated", action.payload);
+      state.userInfo = {
+        ...state.userInfo,
+        ...action.payload,
+      };
+      state.isLogin = true;
+
+    },
     logOut: (state) => {
       state.isLogin = false;
       state.userInfo = null;
@@ -157,6 +166,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { logOut, normalUpdate } = userSlice.actions;
+export const { logOut, normalUpdate, loginWithGoogle } = userSlice.actions;
 
 export default userSlice.reducer;

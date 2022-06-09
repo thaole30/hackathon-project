@@ -51,8 +51,8 @@
 
     .challenges-main-content {
         position: relative;
-        margin-top: 56px;
-        margin-bottom: 56px;
+        padding-top: 56px;
+        padding-bottom: 56px;
 
         .overview-section {
             border: 1px solid rgba(8,10,37,.16);
@@ -65,10 +65,19 @@
                     
                     li {
                         &::marker {
-                            color: blue;
-                            font-size: 2em;
+                          
                         }
                     }
+                }
+                .view-rule-text {
+                    a {
+                        color: $orange-main;
+                    }
+                }
+
+                .overview-btn {
+                    padding: 14px 16px;
+                    height:auto;
                 }
                 .find-more-hkt-btn {
                     background: #303efc;
@@ -79,23 +88,35 @@
           
             .overview-content-right {
                 padding: 20px;
+                border-left: 1px solid rgba(8,10,37,.16);
                 .overview-card {
-                    padding: 17.5px 18px;
                     border-radius: 4px;
     
                     &.time-card {
-                        background-color: #303efc;
-                        color: $white-color;
+                        color: $text-dark;
                     }
         
+                    &.time-detail-card {
+                        position: relative;
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            bottom: 3px;
+                            left: 0;
+                            height: 40px;
+                            width: 100%;
+                            z-index: 1;
+                            background: linear-gradient(1turn,#fff 57.29%,hsla(0,0%,100%,0));
+                            opacity: .7;
+                        }
+                    }
+
                     &.hackathon-detail-card {
                         margin: 12px 0;
-                        background-color: $white-color;
                     }
     
                     &.tags-card {
                         margin: 12px 0;
-                        background-color: $white-color;
                     }
                 }
             }

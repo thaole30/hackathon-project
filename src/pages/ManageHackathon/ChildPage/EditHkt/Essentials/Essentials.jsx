@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Form,
   Input,
@@ -16,18 +16,41 @@ import { hosts, tags } from './../../../../HackathonPage/data/data';
 import { locations } from "../../../../SettingPage/data";
 import CustomButton from "../../../../../components/CustomButton/CustomButton";
 import MyDivider from "../../../../../components/MyDivider/MyDivider";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useOutletContext } from "react-router-dom";
 import MyModal from "../../../../../components/MyModal/MyModal";
+import { showMessage } from "../../../../../utils/showMessage";
 
 
 const { Option } = Select;
 
 
-const Essentials = ({hackathonId, hackathonDetail}) => {
+const Essentials = ({hackathonId}) => {
+  const navigate = useNavigate();
 
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [hackathonDetail, mutationUpdateHackathon, isSuccess, isError] = useOutletContext();
+  console.log("mutationUpdateHackathon", mutationUpdateHackathon);
+  // console.log("hackathonDetail in ess", hackathonDetail);
+  console.log("isSuccess", isSuccess);
+
 
   const [form] = Form.useForm();
+
+  useEffect(() => {
+    form.setFieldsValue({
+      ["name"]: hackathonDetail.name,
+      ["url"]: hackathonDetail.name.replace(/\s/g, ''),
+      ["tagline"]: hackathonDetail.tagline,
+      ["managerContact"]: hackathonDetail.managerContact,
+      ["host"]: hackathonDetail.host,
+      ["themeTags"]: hackathonDetail.themeTags,
+      ["hktType"]: hackathonDetail.hktType,
+      ["themeTags"]: hackathonDetail.themeTags,
+      ["locationName"]: hackathonDetail.locationName,
+      ["locationAddress"]: hackathonDetail.locationAddress,
+      
+  });
+  }, [hackathonDetail])
 
   function handleSelectHost(value) {
     console.log("value select month", value);
@@ -46,7 +69,14 @@ const Essentials = ({hackathonId, hackathonDetail}) => {
   };
 
   const onFinish = (values) => {
+    mutationUpdateHackathon.mutate({id: hackathonDetail._id, values});
+
+    if(isSuccess) {
+      navigate(`/hackathon/manage/${hackathonDetail._id}/edit?form=eligibility`);
+      showMessage("success", "Update hkt success!");
+    }    
     console.log("Success:", values);
+
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -71,8 +101,8 @@ const Essentials = ({hackathonId, hackathonDetail}) => {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
         initialValues={{
-          ["name"]: hackathonDetail ? hackathonDetail.title : "",
-          ["url"]: hackathonDetail ? hackathonDetail.title?.split(' ').join('') : "",
+          ["name"]: hackathonDetail ? hackathonDetail.name : "",
+          ["url"]: hackathonDetail ? hackathonDetail.name : "",
         }}
       >
         <Form.Item
@@ -88,6 +118,7 @@ const Essentials = ({hackathonId, hackathonDetail}) => {
           {/* <p className="text-14 text-gray">Enter the name of your hackathon. Make it distinctive and memorable! Less is more.</p> */}
           <Input size="large" />
         </Form.Item>
+
           <Form.Item
             name="url"
             label={<p className="text-20 bold">URL</p>}
@@ -98,11 +129,11 @@ const Essentials = ({hackathonId, hackathonDetail}) => {
               },
             ]}
           >
-            <p className="text-14 text-gray">Enter the name of your hackathon. Make it distinctive and memorable! Less is more.</p> 
-             <Space>
+            {/* <p className="text-14 text-gray">Enter the name of your hackathon. Make it distinctive and memorable! Less is more.</p>  */}
               <Input size="large" addonAfter=".crowdhack.io"/>
-              <Button type="primary" size="large">Check availability</Button> 
-             </Space> 
+             {/* <Space> */}
+              {/* <Button type="primary" size="large">Check availability</Button>  */}
+             {/* </Space>  */}
           </Form.Item>
           
           <Form.Item
@@ -115,12 +146,12 @@ const Essentials = ({hackathonId, hackathonDetail}) => {
             },
           ]}
         >
-          <p className="text-14 text-gray">Create a short tagline to describe your hackathon.</p>
+          {/* <p className="text-14 text-gray">Create a short tagline to describe your hackathon.</p> */}
           <Input size="large" placeholder="e.g. Create apps and games that enhance math teaching and learning for our middle schools."/>
         </Form.Item>
 
         <Form.Item
-          name="manager-contact"
+          name="managerContact"
           label={<p className="text-20 bold">Manager contact email (displayed on site)</p>}
           rules={[
               {
@@ -175,7 +206,7 @@ const Essentials = ({hackathonId, hackathonDetail}) => {
           >Request New Organization</p>
 
           <Form.Item
-            name="theme-tags"
+            name="themeTags"
             label={
               <p className="text-20 bold">
                 Theme Tags?
@@ -206,7 +237,7 @@ const Essentials = ({hackathonId, hackathonDetail}) => {
           <p className="info text-16 mb-16">Request New Theme Tag</p>
 
           <Form.Item
-            name="hkt-type"
+            name="hktType"
             label={<p className="text-20 bold">What type of hackathon is this?</p>}
           >
             <Radio.Group onChange={onChangeHktType}>
@@ -219,7 +250,7 @@ const Essentials = ({hackathonId, hackathonDetail}) => {
           </Form.Item>
 
           <Form.Item
-            name="location-name"
+            name="locationName"
             label={<p className="text-20 bold">Location name</p>}
             rules={[
               {
@@ -232,9 +263,11 @@ const Essentials = ({hackathonId, hackathonDetail}) => {
             <Input size="large" placeholder="e.g., University of Pennsylvania – Towne Building"/>
           </Form.Item>
 
+      
+
           <Form.Item
-            name="host"
-            label={<p className="text-20 bold">Host</p>}
+            name="locationAddress"
+            label={<p className="text-20 bold">Location address</p>}
             rules={[
               {
                 required: true,

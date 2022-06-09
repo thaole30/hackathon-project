@@ -2,12 +2,21 @@ import React from 'react';
 import { Row, Col, Space } from 'antd';
 import "./SignInPage.scss";
 import LoginForm from './LoginForm/LoginForm';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import MyDivider from '../../../components/MyDivider/MyDivider';
 import CustomButton from '../../../components/CustomButton/CustomButton';
 import AuthCard from '../AuthCard/AuthCard';
+import { GoogleLogin } from '@react-oauth/google';
+import { signInWithhGoogleApi } from '../../../api/auth';
+import { signInWithGoogleCall } from '../../../api/call/authCall';
+import { useDispatch } from 'react-redux';
 
 const SignInPage = () => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
   return (
     <div className="sign-in-page">
         <div className="container">
@@ -29,6 +38,17 @@ const SignInPage = () => {
                             <div>New to CrowdHack&nbsp;<NavLink className="text-16 underline black" to="/user/sign-up">Sign Up.</NavLink></div>
                         </div>
                         <MyDivider className="text-20">or</MyDivider>
+                        <GoogleLogin
+                        onSuccess={credentialResponse => {
+                            console.log("credentialResponse", credentialResponse);
+                            signInWithGoogleCall(credentialResponse.credential, dispatch);
+                            navigate('/');
+
+                        }}
+                        onError={() => {
+                            console.log('Login Failed');
+                        }}
+                        />;
                         <NavLink to="/user/sign-up">
                             <CustomButton addedClass="auth-github">
                                 <Space>

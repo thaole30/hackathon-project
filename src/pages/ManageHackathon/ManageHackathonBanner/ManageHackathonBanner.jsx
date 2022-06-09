@@ -3,12 +3,12 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import CustomButton from '../../../components/CustomButton/CustomButton'
 
-const ManageHackathonBanner = () => {
+const ManageHackathonBanner = ({hackathonDetail}) => {
   return (
     <div className="manage-hackathon-banner">
         <div className="left-banner-content container h-100 f-center f-column a-start">
             <Space style={{alignItems: 'flex-start'}}>
-                <h2 className="white text-60 m-0">check hkt</h2>
+                <h2 className="white text-45 m-0">{hackathonDetail.name}</h2>
                 <Tag className="hkt-type-tag">Draft</Tag>
             </Space>
             <Space>

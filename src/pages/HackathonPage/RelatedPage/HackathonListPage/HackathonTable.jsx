@@ -7,6 +7,10 @@ import {
   } from '@ant-design/icons';
 import CustomButton from '../../../../components/CustomButton/CustomButton';
 import { NavLink } from 'react-router-dom';
+import moment from 'moment';
+import { calculateDayAgos } from '../../../../utils/calculateDate';
+
+
 
 const columns = [
     {
@@ -18,8 +22,10 @@ const columns = [
             <Space>
                 <img className="mr-8" style={{width: '50px', height: '50px'}} src={record.img} alt="" />
                 <div className="f f-column">
-                    <h3 className="m-0">{record.creator}</h3>
-                    <p className="desc-time m-0 text-16 mr-8">Last updated about 6 days ago</p>
+                    <h3 className="m-0">{record.name}</h3>
+                    <p className="desc-time m-0 text-16 mr-8">Last updated about {
+                      calculateDayAgos(record.updatedAt)
+                    } days ago</p>
                 </div>
                 <div className="f-between" style={{marginLeft: '10px'}}>
                     <span>
@@ -34,12 +40,12 @@ const columns = [
     },
     {
       title: 'Status',
-      dataIndex: 'progress',
-      key: 'progress',
+      dataIndex: 'status',
+      key: 'status',
       render: (field, record, index) => {
           return (
                 <button className="status-btn">
-                    {record.progress}
+                    {record.status}
                 </button>
           )
       }
@@ -54,7 +60,7 @@ const columns = [
                 <NavLink to="/" className="action-btn mr-8">
                     <EyeOutlined />
                 </NavLink>
-                <NavLink to="/" className="action-btn">
+                <NavLink to={`/hackathon/manage/${record._id}/edit`} className="action-btn">
                     <EditOutlined />
                 </NavLink>
             </div>
@@ -68,9 +74,10 @@ const columns = [
 
   const data = myHackathons;
 
-const HackathonTable = () => {
+const HackathonTable = ({myHackathons}) => {
+  console.log("myHackathons in table", myHackathons);
   return (
-    <Table className="hackathon-table" columns={columns} dataSource={data} />
+    <Table className="hackathon-table" columns={columns} dataSource={myHackathons} />
   )
 }
 

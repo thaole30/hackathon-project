@@ -28,7 +28,7 @@ const { hackathonId } = useParams();
   // console.log("location", location)
 
 
-  const {data :hackathonDetail, isFetching, isLoading } = useHackathonByIdQuery(hackathonId);
+  const {data :hackathonDetail, isFetching, isLoading, isSuccess, isError, mutationUpdateHackathon } = useHackathonByIdQuery(hackathonId);
 
 
   useEffect(() => {
@@ -38,11 +38,11 @@ const { hackathonId } = useParams();
 
 
 
-  useEffect(() => {
-    if (hackathonId) {
-      dispatch(fetchHackathonDetail(hackathonId));
-    }
-  }, [hackathonId]);
+  // useEffect(() => {
+  //   if (hackathonId) {
+  //     dispatch(fetchHackathonDetail(hackathonId));
+  //   }
+  // }, [hackathonId]);
 
   if (isLoading) {
     return (
@@ -57,7 +57,7 @@ const { hackathonId } = useParams();
 
   return (
     <div className="manage-hackathon-page">
-        <ManageHackathonBanner/>
+        <ManageHackathonBanner hackathonDetail={hackathonDetail}/>
         <MainTab hackathonId={hackathonId} currentTab={currentTab}/>
         <div className="container">
           <div className="tab-divider">
@@ -65,7 +65,7 @@ const { hackathonId } = useParams();
           </div>
         </div>
         <div className="manage-hackathon-content">
-          <Outlet context={[hackathonDetail]}/>
+          <Outlet context={[hackathonDetail, mutationUpdateHackathon, isSuccess, isError]}/>
           
         </div>
     </div>

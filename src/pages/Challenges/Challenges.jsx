@@ -140,7 +140,7 @@ const Challenges = () => {
         </div>
       </div>
 
-      <div className="challenges-main-content container">
+      <div className="challenges-main-content container-lg">
         <Outlet context={[projectDetailInfo]}/>
       </div>
     </div>

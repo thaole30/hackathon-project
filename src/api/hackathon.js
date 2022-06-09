@@ -9,6 +9,10 @@ export const getHackathonByIdApi = (id) => {
     return publicRequest.get(`/hackathons/${id}`);
 }
 
+export const getMyHktsApi = () => {
+    return userRequest().get(`/myHackathons`);
+}
+
 export const getUserHackathonsApi = () => {
     return userRequest().get(`/hackathons/userHackathons`);
 }
@@ -16,7 +20,6 @@ export const getUserHackathonsApi = () => {
 export const createHackathonApi = (data) => {
     return userRequest().post('/hackathons', data);
 };
-
 
 
 export const updateHackathonApi = (hackathonId, formData) => {

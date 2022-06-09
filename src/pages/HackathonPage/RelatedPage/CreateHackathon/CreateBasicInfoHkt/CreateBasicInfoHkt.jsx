@@ -57,7 +57,7 @@ const CreateBasicInfoHkt = () => {
         initialValues={{}}
       >
         <Form.Item
-          name="title"
+          name="name"
           label={<p className="text-20 bold">Hackathon Name</p>}
           rules={[
             {
